@@ -1,23 +1,23 @@
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs')
+const path = require('path')
 
-const basename = path.basename(__filename);
+const basename = path.basename(__filename)
 
-const modelDefiners = [];
+const modelDefiners = []
 
-fs.readdirSync(path.join(__dirname, "../models"))
+fs.readdirSync(path.join(__dirname, '../models'))
   .filter(
-    (filePath) =>
-      filePath.indexOf(".") !== 0 &&
+    filePath =>
+      filePath.indexOf('.') !== 0 &&
       filePath !== basename &&
-      filePath.slice(-3) === ".js"
+      filePath.slice(-3) === '.js'
   )
-  .forEach((file) =>
-    modelDefiners.push(require(path.join(__dirname, "../models", file)))
-  );
+  .forEach(file =>
+    modelDefiners.push(require(path.join(__dirname, '../models', file)))
+  )
 
-const sequelize_instaces = (dbConnection) => {
-  return modelDefiners.forEach((model) => model(dbConnection));
-};
+const sequelize_instaces = dbConnection => {
+  return modelDefiners.forEach(model => model(dbConnection))
+}
 
-module.exports = sequelize_instaces;
+module.exports = sequelize_instaces

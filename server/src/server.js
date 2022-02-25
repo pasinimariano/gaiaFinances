@@ -1,30 +1,31 @@
-const express = require("express");
-const cookieParser = require("cookie-parser");
-const morgan = require("morgan");
+const express = require('express')
+const cookieParser = require('cookie-parser')
+const morgan = require('morgan')
 
-const accessControlMiddleware = require("./config/middlewares/accessControl");
-const endwareControlMiddleware = require("./config/middlewares/endwareControl");
+const routes = require('./routes')
+const accessControlMiddleware = require('./config/middlewares/accessControl')
+const endwareControlMiddleware = require('./config/middlewares/endwareControl')
 
-const server = express();
+const server = express()
 
-server.name = "Server";
+server.name = 'Server'
 
 server.use(
   express.urlencoded({
     extended: true,
-    limit: "50mb",
+    limit: '50mb'
   })
-);
+)
 server.use(
   express.json({
-    limit: "50mb",
+    limit: '50mb'
   })
-);
-server.use(cookieParser());
-server.use(morgan("dev"));
+)
+server.use(cookieParser())
+server.use(morgan('dev'))
 
-accessControlMiddleware(server);
-//routes
-endwareControlMiddleware(server);
+accessControlMiddleware(server)
+routes(server)
+endwareControlMiddleware(server)
 
-module.exports = server;
+module.exports = server

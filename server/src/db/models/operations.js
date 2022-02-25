@@ -1,25 +1,27 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes } = require('sequelize')
 
-const OperationsModel = (sequelize) => {
-  return sequelize.define("Operations", {
+const OperationsModel = sequelize => {
+  return sequelize.define('Operations', {
+    _id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true
+    },
     description: {
       type: DataTypes.STRING(152),
-      allowNull: false,
+      allowNull: false
     },
     amount: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+      type: DataTypes.FLOAT,
+      allowNull: false
     },
-    date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-    types: {
+    status: {
       type: DataTypes.ENUM({
-        values: ["Income", "Expenditure"],
+        values: ['Income', 'Expenditure']
       }),
-    },
-  });
-};
+      allowNull: false
+    }
+  })
+}
 
-module.exports = OperationsModel;
+module.exports = OperationsModel
