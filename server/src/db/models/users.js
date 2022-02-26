@@ -18,11 +18,13 @@ const UsersModel = sequelize => {
         type: DataTypes.STRING,
         allowNull: false
       },
-      firstName: {
-        type: DataTypes.STRING(20)
+      firstname: {
+        type: DataTypes.STRING(20),
+        allowNull: false
       },
-      lastName: {
-        type: DataTypes.STRING(20)
+      lastname: {
+        type: DataTypes.STRING(20),
+        allowNull: false
       }
     },
     {

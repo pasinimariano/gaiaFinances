@@ -11,15 +11,25 @@ const { createUser, searchUserByEmail, updateUser, deleteUser } = store
 const userPost = async data => {
   const check = checkData(data)
 
-  if (check.email === 'Ok' && check.password === 'Ok') {
+  if (
+    check.email === 'Ok' &&
+    check.password === 'Ok' &&
+    check.firstname === 'Ok' &&
+    check.lastname === 'Ok'
+  ) {
     const email = data.email.toLowerCase()
     const hashedPassword = await hashPassword(data.password)
 
-    const response = await createUser(email, hashedPassword)
+    const response = await createUser(
+      email,
+      hashedPassword,
+      data.firstname,
+      data.lastname
+    )
 
     return response
   }
-  return { invalid: check }
+  return check
 }
 
 const loginUser = async data => {

@@ -6,7 +6,7 @@ const categoriesLoader = require('./src/loaders/categoriesLoader')
 const { SERVER_HOST, SERVER_PORT } = process.env
 
 CONNECTION.sync({
-  force: false
+  force: true
 })
   .then(async () => {
     try {

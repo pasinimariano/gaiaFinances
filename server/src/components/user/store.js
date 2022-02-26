@@ -2,8 +2,8 @@ const Db = require('../../db/index')
 
 const { Users } = Db.CONNECTION.models
 
-const createUser = (email, password) => {
-  return Users.create({ email, password })
+const createUser = (email, password, firstname, lastname) => {
+  return Users.create({ email, password, firstname, lastname })
     .then(() => {
       return { message: 'Success' }
     })

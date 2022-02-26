@@ -8,8 +8,8 @@ const emailValidator = email => {
 }
 
 const checkData = data => {
-  let check = { email: '', password: '' }
-  const { email, password } = data
+  let check = { email: '', password: '', firstname: '', lastname: '' }
+  const { email, password, firstname, lastname } = data
 
   const validMail = emailValidator(email)
 
@@ -24,6 +24,18 @@ const checkData = data => {
     : password.toString().length < 6
     ? (check.password = 'At least 6 characters are required')
     : (check.password = 'Ok')
+
+  !firstname
+    ? (check.firstname = 'No firstname received')
+    : firstname.length < 2
+    ? (check.firstname = 'At least 2 characters are required')
+    : (check.firstname = 'Ok')
+
+  !lastname
+    ? (check.lastname = 'No lastname received')
+    : lastname.length < 2
+    ? (check.lastname = 'At least 2 characters are required')
+    : (check.lastname = 'Ok')
 
   return check
 }
