@@ -6,16 +6,16 @@ const store = require('./store')
 
 const { hashPassword, checkHashedPassword } = passwordEncrypter
 const { createAccessToken, authenticateToken } = tokenGenerator
-const { create, searchUserByEmail, update, _delete } = store
+const { createUser, searchUserByEmail, updateUser, deleteUser } = store
 
-const createUser = async data => {
+const userPost = async data => {
   const check = checkData(data)
 
   if (check.email === 'Ok' && check.password === 'Ok') {
     const email = data.email.toLowerCase()
     const hashedPassword = await hashPassword(data.password)
 
-    const response = await create(email, hashedPassword)
+    const response = await createUser(email, hashedPassword)
 
     return response
   }
@@ -40,7 +40,7 @@ const loginUser = async data => {
   return { invalid: 'Invalid password' }
 }
 
-const updateUSer = async (data, token) => {
+const userPut = async (data, token) => {
   const validToken = authenticateToken(token)
 
   if (!validToken) return { missing: 'Invalid or missing token' }
@@ -62,7 +62,7 @@ const updateUSer = async (data, token) => {
   return { invalid: 'Invalid password' }
 }
 
-const deleteUser = async (user, token) => {
+const userDelete = async (user, token) => {
   const validToken = authenticateToken(token)
 
   if (!validToken) return { missing: 'Invalid or missing token' }
@@ -74,15 +74,15 @@ const deleteUser = async (user, token) => {
   )
 
   if (checkPassword) {
-    const response = await _delete(user)
+    const response = await deleteUser(user)
     return response
   }
   return { invalid: 'Invalid password' }
 }
 
 module.exports = {
-  createUser,
+  userPost,
   loginUser,
-  updateUSer,
-  deleteUser
+  userPut,
+  userDelete
 }

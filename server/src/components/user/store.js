@@ -2,7 +2,7 @@ const Db = require('../../db/index')
 
 const { Users } = Db.CONNECTION.models
 
-const create = (email, password) => {
+const createUser = (email, password) => {
   return Users.create({ email, password })
     .then(() => {
       return { message: 'Success' }
@@ -34,7 +34,7 @@ const searchUserByEmail = user => {
     })
 }
 
-const update = newData => {
+const updateUser = newData => {
   newData['email'] = newData.email.toLowerCase()
   return Users.update(newData, { where: { _id: newData._id } })
     .then(async () => {
@@ -47,7 +47,7 @@ const update = newData => {
     })
 }
 
-const _delete = user => {
+const deleteUser = user => {
   return Users.destroy({ where: { _id: user._id } })
     .then(() => {
       return { message: 'Success' }
@@ -58,8 +58,8 @@ const _delete = user => {
 }
 
 module.exports = {
-  create,
+  createUser,
   searchUserByEmail,
-  update,
-  _delete
+  updateUser,
+  deleteUser
 }

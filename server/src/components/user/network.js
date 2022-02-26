@@ -4,12 +4,12 @@ const controller = require('./controller')
 
 const router = express.Router()
 
-const { createUser, loginUser, updateUSer, deleteUser } = controller
+const { userPost, loginUser, userPut, userDelete } = controller
 
 router.post('/create', async (req, res) => {
   const body = req.body
 
-  const response = await createUser(body)
+  const response = await userPost(body)
 
   response.hasOwnProperty('invalid')
     ? res.status(400).json(response)
@@ -36,7 +36,7 @@ router.put('/update', async (req, res) => {
   const body = req.body
   const { token } = req.query
 
-  const response = await updateUSer(body, token)
+  const response = await userPut(body, token)
 
   response.hasOwnProperty('missing')
     ? res.status(401).json(response)
@@ -53,7 +53,7 @@ router.delete('/delete', async (req, res) => {
   const body = req.body
   const { token } = req.query
 
-  const response = await deleteUser(body, token)
+  const response = await userDelete(body, token)
 
   response.hasOwnProperty('missing')
     ? res.status(401).json(response)
