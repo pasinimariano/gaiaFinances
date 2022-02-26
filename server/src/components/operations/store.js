@@ -55,6 +55,10 @@ const createOperation = async data => {
 
 const updateOperation = async newData => {
   const { _id, category, description, amount, status, userId, date } = newData
+  const findOperation = await Operations.findByPk(_id)
+
+  if (findOperation === null)
+    return { invalid: 'Invalid id, operation doest exist' }
 
   if (newData.status !== findOperation.status)
     return {
