@@ -4,11 +4,11 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 
-import { App } from './app/'
+import App from './app/'
 import reduxStore from './redux/store'
 
 const { Store, Persistor } = reduxStore
-Persistor.purge()
+//Persistor.purge()
 ReactDom.render(
   <Provider store={Store}>
     <React.StrictMode>

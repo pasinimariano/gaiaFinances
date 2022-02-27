@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { DELETE_USER, LOGIN_USER } from '.'
+import { DELETE_USER, LOGIN_USER, IS_LOGGING } from '.'
 
 export const loginUser = (email, password) => {
   const params = { email, password }
@@ -17,5 +17,13 @@ export const loginUser = (email, password) => {
 }
 
 export const deleteUSer = () => {
-  return { type: DELETE_USER }
+  return {
+    type: DELETE_USER
+  }
+}
+
+export const isLogging = () => {
+  return {
+    type: IS_LOGGING
+  }
 }

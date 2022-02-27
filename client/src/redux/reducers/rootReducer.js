@@ -1,5 +1,5 @@
 import { initialState } from './state'
-import { LOGIN_USER, DELETE_USER } from '../actions/'
+import { LOGIN_USER, DELETE_USER, IS_LOGGING } from '../actions/'
 
 export const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -12,7 +12,14 @@ export const rootReducer = (state = initialState, action) => {
     case DELETE_USER:
       return {
         ...state,
-        User: []
+        User: [],
+        isLoggin: false
+      }
+
+    case IS_LOGGING:
+      return {
+        ...state,
+        isLoggin: true
       }
 
     default:

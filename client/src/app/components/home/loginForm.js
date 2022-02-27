@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
-import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
 
 import { TextFields } from './components/textFields'
 import { Buttons } from './components/buttons'
@@ -11,19 +12,26 @@ export const LoginForm = ({
   formValues,
   handleChange,
   loginUser,
-  deleteUser,
+  isLogging,
   userState,
+  logginState,
   classes
 }) => {
   useEffect(() => {
-    deleteUser()
-  }, [])
+    userState.token ? isLogging() : null
+  }, [userState])
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    logginState ? navigate('/dashboard') : null
+  }, [logginState])
 
   return (
     <Grid container>
       <Paper className={classes.formLayout} elevation={0}>
         <h1>¡Bienvenid@ nuevamente a Gaia Finances! </h1>
-        <h3> Tus finanzas te esperan a un solo click </h3>
+        <Typography> Tus finanzas te esperan a un solo click </Typography>
         <TextFields
           name='email'
           label='Email'
@@ -45,7 +53,11 @@ export const LoginForm = ({
           labelOne='No tengo cuenta'
           buttonTwo={() => loginUser(formValues.email, formValues.password)}
           labelTwo='Iniciar sesión'
-          errorHandler={(userState && userState.nonexist) || userState.error}
+          errorHandler={
+            (userState && userState.nonexist) ||
+            userState.invalid ||
+            userState.error
+          }
           classes={classes}
         />
       </Paper>

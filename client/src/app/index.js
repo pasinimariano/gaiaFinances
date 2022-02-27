@@ -1,14 +1,15 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { useLocation } from 'react-router-dom'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
-import { useLocation } from 'react-router-dom'
 
 import { RoutesWeb } from './routesWeb'
 import { Navigation } from './components/navigation/'
 import { Styles } from './styles/appStyles'
 import './styles/main.css'
 
-export const App = () => {
+const App = ({ isLoggin }) => {
   const classes = Styles()
   const location = useLocation().pathname
 
@@ -16,7 +17,7 @@ export const App = () => {
     <Grid container className={classes.root}>
       <Paper className={classes.navigation} elevation={0} />
       <Paper className={classes.layout} elevation={0}>
-        <RoutesWeb />
+        <RoutesWeb isLoggin={isLoggin} />
       </Paper>
       <Paper className={classes.navigation} elevation={0}>
         {location !== '/' ? <Navigation /> : null}
@@ -24,3 +25,11 @@ export const App = () => {
     </Grid>
   )
 }
+
+const mapStateToProps = state => {
+  return {
+    isLoggin: state.isLoggin
+  }
+}
+
+export default connect(mapStateToProps, null)(App)

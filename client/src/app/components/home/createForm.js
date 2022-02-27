@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
 
 import { TextFields } from './components/textFields'
 import { Buttons } from './components/buttons'
@@ -21,7 +22,7 @@ export const CreateForm = ({
     <Grid container>
       <Paper className={classes.formLayout} elevation={0}>
         <h1>¡Bienvenid@ a Gaia Finances!</h1>
-        <h3> Gestiona todos tus gastos en una sola app</h3>
+        <Typography> Gestiona todos tus gastos en una sola app</Typography>
         <TextFields
           name='email'
           label='Email'

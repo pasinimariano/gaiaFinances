@@ -1,15 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import Grid from '@material-ui/core/Grid'
 import Hidden from '@material-ui/core/Hidden'
 
 import { Statements } from './statement'
 import { mapStateToProps, mapDispatchToProps } from './reduxConnection'
-import { CreateForm } from '../components/home/createForm'
-import { LoginForm } from '../components/home/loginForm'
-import { Styles } from '../styles/homeStyles'
+import { CreateForm } from '../../components/home/createForm'
+import { LoginForm } from '../../components/home/loginForm'
+import { Styles } from '../../styles/homeStyles'
 
-const HomePage = ({ loginUser, deleteUser, userState }) => {
+const HomePage = ({
+  loginUser,
+  deleteUser,
+  isLogging,
+  userState,
+  logginState
+}) => {
   const classes = Styles()
 
   const {
@@ -20,6 +26,10 @@ const HomePage = ({ loginUser, deleteUser, userState }) => {
     createUser,
     backResponse
   } = Statements()
+
+  useEffect(() => {
+    deleteUser()
+  }, [])
 
   return (
     <div className={classes.root}>
@@ -41,7 +51,9 @@ const HomePage = ({ loginUser, deleteUser, userState }) => {
               handleChange={handleChange}
               loginUser={loginUser}
               deleteUser={deleteUser}
+              isLogging={isLogging}
               userState={userState}
+              logginState={logginState}
               classes={classes}
             />
           )}
