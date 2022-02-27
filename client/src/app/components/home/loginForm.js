@@ -1,35 +1,53 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
-import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
-export const LoginForm = ({ setForm, formValues, handleChange, classes }) => {
+import { TextFields } from './components/textFields'
+import { Buttons } from './components/buttons'
+
+export const LoginForm = ({
+  setForm,
+  formValues,
+  handleChange,
+  loginUser,
+  deleteUser,
+  userState,
+  classes
+}) => {
+  useEffect(() => {
+    deleteUser()
+  }, [])
+
   return (
     <Grid container>
       <Paper className={classes.formLayout} elevation={0}>
-        <text>LOGO</text>
-        <TextField
+        <h1>¡Bienvenid@ nuevamente a Gaia Finances! </h1>
+        <h3> Tus finanzas te esperan a un solo click </h3>
+        <TextFields
           name='email'
           label='Email'
-          variant='outlined'
-          color='primary'
-          required
           value={formValues.email}
           onChange={handleChange}
-          className={classes.field}
+          classes={classes}
+          errorHandler={userState && userState.email}
         />
-        <TextField
+        <TextFields
           name='password'
           label='Password'
-          variant='outlined'
-          color='primary'
-          required
           value={formValues.password}
           onChange={handleChange}
-          className={classes.field}
+          classes={classes}
+          errorHandler={userState && userState.password}
         />
-        <Button>Iniciar sesión</Button>
+        <Buttons
+          buttonOne={() => setForm('create')}
+          labelOne='No tengo cuenta'
+          buttonTwo={() => loginUser(formValues.email, formValues.password)}
+          labelTwo='Iniciar sesión'
+          errorHandler={(userState && userState.nonexist) || userState.error}
+          classes={classes}
+        />
       </Paper>
     </Grid>
   )

@@ -2,7 +2,7 @@ import { applyMiddleware, createStore, compose } from 'redux'
 import { persistStore } from 'redux-persist'
 import thunk from 'redux-thunk'
 
-import persistReducer from './reducers/'
+import { persistedReducer } from './reducers/'
 
 const composeEnhancers =
   (typeof window !== 'undefined' &&
@@ -10,7 +10,7 @@ const composeEnhancers =
   compose
 
 const Store = createStore(
-  persistReducer,
+  persistedReducer,
   composeEnhancers(applyMiddleware(thunk))
 )
 

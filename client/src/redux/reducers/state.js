@@ -1,4 +1,5 @@
 export const initialState = {
   User: [],
-  UserOperations: []
+  UserOperations: [],
+  isLoggin: false
 }

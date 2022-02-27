@@ -8,7 +8,7 @@ import { App } from './app/'
 import reduxStore from './redux/store'
 
 const { Store, Persistor } = reduxStore
-//Persistor.purge()
+Persistor.purge()
 ReactDom.render(
   <Provider store={Store}>
     <React.StrictMode>

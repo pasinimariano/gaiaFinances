@@ -9,4 +9,4 @@ const persistConfig = {
   storage: localforage
 }
 
-export const persistReducer = persistReducer(persistConfig, rootReducer)
+export const persistedReducer = persistReducer(persistConfig, rootReducer)

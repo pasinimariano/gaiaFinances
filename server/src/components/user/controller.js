@@ -33,21 +33,29 @@ const userPost = async data => {
 }
 
 const loginUser = async data => {
-  const user = await searchUserByEmail(data)
+  const check = checkData(data)
 
-  if (!user) return { nonexist: 'User doest exist' }
+  if (check.email === 'Ok' && check.password === 'Ok') {
+    const user = await searchUserByEmail(data)
 
-  const checkPassword = await checkHashedPassword(data.password, user.password)
+    if (!user) return { nonexist: 'User doest exist' }
 
-  if (checkPassword) {
-    const token = createAccessToken(user.email)
-    const response = {
-      user,
-      token
+    const checkPassword = await checkHashedPassword(
+      data.password,
+      user.password
+    )
+
+    if (checkPassword) {
+      const token = createAccessToken(user.email)
+      const response = {
+        user,
+        token
+      }
+      return response
     }
-    return response
+    return { invalid: 'Invalid password' }
   }
-  return { invalid: 'Invalid password' }
+  return { email: check.email, password: check.password }
 }
 
 const userPut = async (data, token) => {
@@ -65,7 +73,7 @@ const userPut = async (data, token) => {
     data.hasOwnProperty('newpassword')
       ? (data['password'] = await hashPassword(data.newpassword))
       : (data['password'] = await hashPassword(data.password))
-    const response = await update(data)
+    const response = await updateUser(data)
     return response
   }
 

@@ -22,10 +22,9 @@ router.post('/create', async (req, res) => {
 })
 
 router.get('/login', async (req, res) => {
-  const body = req.body
+  const body = req.query
 
   const response = await loginUser(body)
-
   /*
   response.hasOwnProperty('nonexist')
     ? res.status(404).json(response)

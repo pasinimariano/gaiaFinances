@@ -10,7 +10,14 @@ export const Styles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0)'
+  },
+  imgContainer: {
+    backgroundImage:
+      'url(https://c4.wallpaperflare.com/wallpaper/288/295/817/smartphone-iphone-macbook-wallpaper-preview.jpg)',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover'
   },
   field: {
     width: '70%',
@@ -22,6 +29,7 @@ export const Styles = makeStyles({
   },
   buttonsContainer: {
     marginTop: '25px',
+    marginBottom: '25px',
     width: '70%',
     display: 'flex',
     justifyContent: 'space-around'

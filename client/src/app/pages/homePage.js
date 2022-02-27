@@ -1,13 +1,17 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import Grid from '@material-ui/core/Grid'
+import Hidden from '@material-ui/core/Hidden'
 
 import { Statements } from './statement'
+import { mapStateToProps, mapDispatchToProps } from './reduxConnection'
 import { CreateForm } from '../components/home/createForm'
 import { LoginForm } from '../components/home/loginForm'
 import { Styles } from '../styles/homeStyles'
 
-export const HomePage = () => {
+const HomePage = ({ loginUser, deleteUser, userState }) => {
   const classes = Styles()
+
   const {
     form,
     setForm,
@@ -16,11 +20,11 @@ export const HomePage = () => {
     createUser,
     backResponse
   } = Statements()
-  console.log(backResponse)
+
   return (
     <div className={classes.root}>
       <Grid container>
-        <Grid lg={4}>
+        <Grid item xs={12} md={12} lg={4}>
           {form === 'create' ? (
             <CreateForm
               setForm={setForm}
@@ -35,12 +39,19 @@ export const HomePage = () => {
               setForm={setForm}
               formValues={formValues}
               handleChange={handleChange}
+              loginUser={loginUser}
+              deleteUser={deleteUser}
+              userState={userState}
               classes={classes}
             />
           )}
         </Grid>
-        <Grid lg={8}> IMG</Grid>
+        <Hidden mdDown>
+          <Grid item lg={8} className={classes.imgContainer} />
+        </Hidden>
       </Grid>
     </div>
   )
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage)

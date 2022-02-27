@@ -1,5 +1,5 @@
-import initialState from './state'
-import { LOGIN_USER } from '../actions/actionsCreator'
+import { initialState } from './state'
+import { LOGIN_USER, DELETE_USER } from '../actions/'
 
 export const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -7,6 +7,12 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         User: action.payload
+      }
+
+    case DELETE_USER:
+      return {
+        ...state,
+        User: []
       }
 
     default:

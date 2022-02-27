@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
-import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
+
+import { TextFields } from './components/textFields'
+import { Buttons } from './components/buttons'
 
 export const CreateForm = ({
   setForm,
@@ -21,73 +22,47 @@ export const CreateForm = ({
       <Paper className={classes.formLayout} elevation={0}>
         <h1>¡Bienvenid@ a Gaia Finances!</h1>
         <h3> Gestiona todos tus gastos en una sola app</h3>
-        <TextField
+        <TextFields
           name='email'
           label='Email'
-          variant='outlined'
-          color='primary'
-          required
           value={formValues.email}
           onChange={handleChange}
-          className={classes.field}
+          classes={classes}
+          errorHandler={backResponse && backResponse.email}
         />
-        <div className={classes.error}>
-          {backResponse && backResponse.email}
-        </div>
-        <TextField
+        <TextFields
           name='firstname'
           label='Nombre'
-          variant='outlined'
-          color='primary'
-          required
           value={formValues.firstname}
           onChange={handleChange}
-          className={classes.field}
+          classes={classes}
+          errorHandler={backResponse && backResponse.firstname}
         />
-        <div className={classes.error}>
-          {backResponse && backResponse.firstname}
-        </div>
-        <TextField
+        <TextFields
           name='lastname'
           label='Apellido'
-          variant='outlined'
-          color='primary'
-          required
           value={formValues.lastname}
           onChange={handleChange}
-          className={classes.field}
+          classes={classes}
+          errorHandler={backResponse && backResponse.lastname}
         />
-        <div className={classes.error}>
-          {backResponse && backResponse.lastname}
-        </div>
-        <TextField
+        <TextFields
           name='password'
           label='Password'
-          variant='outlined'
-          color='primary'
-          required
           value={formValues.password}
           onChange={handleChange}
-          className={classes.field}
+          classes={classes}
+          errorHandler={backResponse && backResponse.password}
         />
-        <div className={classes.error}>
-          {backResponse && backResponse.password}
-        </div>
-        <div className={classes.buttonsContainer}>
-          <Button
-            onClick={() => createUser(formValues)}
-            variant='outlined'
-            color='secondary'
-            className={classes.createButton}
-          >
-            Crear cuenta
-          </Button>
-          <Button color='secondary' onClick={() => setForm('login')}>
-            Ya tengo cuenta
-          </Button>
-        </div>
+        <Buttons
+          buttonOne={() => setForm('login')}
+          labelOne='Ya tengo cuenta'
+          buttonTwo={() => createUser(formValues)}
+          labelTwo='Crear cuenta'
+          errorHandler={backResponse && backResponse.error}
+          classes={classes}
+        />
       </Paper>
-      <div>{backResponse && Object.keys(backResponse) !== 'message'}</div>
     </Grid>
   )
 }

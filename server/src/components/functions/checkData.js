@@ -2,6 +2,7 @@ const emailValidator = email => {
   let regex =
     "([-!#-'*+/-9=?A-Z^-~]+(.[-!#-'*+/-9=?A-Z^-~]+)*|\"([]!#-[^-~ \t]|(\\[\t -~]))+\")@([-!#-'*+/-9=?A-Z^-~]+(.[-!#-'*+/-9=?A-Z^-~]+)*|[[\t -Z^-~]*])"
 
+  if (!email) return undefined
   email.match(regex) ? (response = 'Valid') : (response = 'Invalid')
 
   return response
