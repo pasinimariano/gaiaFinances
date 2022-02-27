@@ -18,8 +18,19 @@ export const Styles = makeStyles({
     height: '20%',
     display: 'flex'
   },
+  tableContainer: {
+    backgroundColor: 'rgba(0,0,0,0)',
+    height: '30%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  tableTitle: {
+    fontSize: '22px',
+    margin: '10px'
+  },
   graphContainer: {
-    height: '60%'
+    height: '50%'
   },
   dataContainer: {
     display: 'flex',
@@ -53,5 +64,17 @@ export const Styles = makeStyles({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#313552'
+  },
+  table: {
+    backgroundColor: 'rgba(0,0,0,0)',
+    width: '92%',
+    marginBottom: '10px'
+  },
+  tableHeaders: {
+    backgroundColor: '#203239'
+  },
+  header: {
+    color: '#B8405E',
+    fontWeight: 'bolder'
   }
 })

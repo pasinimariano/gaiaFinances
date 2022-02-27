@@ -6,6 +6,7 @@ export const Statements = () => {
     expenditures: 0,
     balance: 0
   })
+  const [lastTransactions, setLastTransactions] = useState()
 
   const intToString = value => {
     var suffixes = ['', 'k', 'm', 'b', 't']
@@ -51,12 +52,22 @@ export const Statements = () => {
     return intToString(total)
   }
 
+  const getLastTransactions = operations => {
+    const order = operations.sort((a, b) => new Date(b.date) - new Date(a.date))
+
+    const lastest = order.slice(0, 10)
+
+    setLastTransactions(lastest)
+  }
+
   return {
     transactions,
     setTransactions,
     getIncomes,
     getExpenditures,
     getBalance,
-    intToString
+    intToString,
+    lastTransactions,
+    getLastTransactions
   }
 }

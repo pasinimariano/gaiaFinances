@@ -5,8 +5,10 @@ import Paper from '@material-ui/core/Paper'
 
 import { mapStateToProps, mapDispatchToProps } from './reduxConnection'
 import { InfoOperations } from '../../components/operations/infoOperations'
+import { LastOperations } from '../../components/operations/lastOperations'
 import { Statements } from './statement'
 import { Styles } from '../../styles/operationsStyles'
+import { Typography } from '@material-ui/core'
 
 const OperationsPage = ({ user, operations, getAllOperations }) => {
   const classes = Styles()
@@ -17,7 +19,9 @@ const OperationsPage = ({ user, operations, getAllOperations }) => {
     getIncomes,
     getExpenditures,
     getBalance,
-    intToString
+    intToString,
+    getLastTransactions,
+    lastTransactions
   } = Statements()
 
   useEffect(() => {
@@ -32,6 +36,8 @@ const OperationsPage = ({ user, operations, getAllOperations }) => {
         expenditures: intToString(expenditures),
         balance
       })
+
+      await getLastTransactions(operations.operations)
     }
 
     completeData()
@@ -50,8 +56,14 @@ const OperationsPage = ({ user, operations, getAllOperations }) => {
           <Paper className={classes.graphContainer} elevation={0}>
             GRAFICO
           </Paper>
-          <Paper className={classes.allOperations} elevation={0}>
-            ULTIMOS 10
+          <Paper className={classes.tableContainer} elevation={0}>
+            <Typography className={classes.tableTitle}>
+              Ultimos movimientos
+            </Typography>
+            <LastOperations
+              lastTransactions={lastTransactions}
+              classes={classes}
+            />
           </Paper>
         </Grid>
         <Grid item lg={2}>
