@@ -1,5 +1,10 @@
 import { initialState } from './state'
-import { LOGIN_USER, DELETE_USER, IS_LOGGING } from '../actions/'
+import {
+  LOGIN_USER,
+  DELETE_USER,
+  IS_LOGGING,
+  GET_OPERATIONS
+} from '../actions/'
 
 export const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -20,6 +25,12 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoggin: true
+      }
+
+    case GET_OPERATIONS:
+      return {
+        ...state,
+        UserOperations: action.payload
       }
 
     default:

@@ -5,7 +5,7 @@ export const Styles = makeStyles({
     height: '100%'
   },
   formLayout: {
-    height: '88vh',
+    height: '100vh',
     width: '100%',
     display: 'flex',
     flexDirection: 'column',

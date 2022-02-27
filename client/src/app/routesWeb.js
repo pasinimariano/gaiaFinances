@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Routes, Navigate } from 'react-router-dom'
 
 import HomePage from './pages/home/homePage'
-import { OperationsPage } from './pages/operations/operationsPage'
+import OperationsPage from './pages/operations/operationsPage'
 
 export const RoutesWeb = ({ isLoggin }) => {
   return (

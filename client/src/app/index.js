@@ -15,7 +15,6 @@ const App = ({ isLoggin }) => {
 
   return (
     <Grid container className={classes.root}>
-      <Paper className={classes.navigation} elevation={0} />
       <Paper className={classes.layout} elevation={0}>
         <RoutesWeb isLoggin={isLoggin} />
       </Paper>

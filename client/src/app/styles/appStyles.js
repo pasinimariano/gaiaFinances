@@ -7,7 +7,7 @@ export const Styles = makeStyles({
     backgroundColor: '#EEE6CE'
   },
   layout: {
-    height: '88%',
+    height: '94%',
     width: '100%',
     backgroundColor: 'rgba(0,0,0,0)'
   },

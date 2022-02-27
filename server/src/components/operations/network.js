@@ -7,8 +7,7 @@ const router = express.Router()
 const { operationsGet, operationPost, operationPut } = controller
 
 router.get('/all', async (req, res) => {
-  const { userId } = req.body
-  const { token } = req.query
+  const { userId, token } = req.query
 
   const response = await operationsGet(userId, token)
 
@@ -21,6 +20,7 @@ router.post('/create', async (req, res) => {
 
   const response = await operationPost(body, token)
 
+  /*
   response.hasOwnProperty('missing')
     ? res.status(401).json(response)
     : response.hasOwnProperty('missingUser')
@@ -34,6 +34,8 @@ router.post('/create', async (req, res) => {
     : response.hasOwnProperty('error')
     ? res.status(403).json(response)
     : res.json(response)
+  */
+  res.json(response)
 })
 
 router.put('/update', async (req, res) => {
