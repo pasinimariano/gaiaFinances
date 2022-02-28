@@ -10,6 +10,7 @@ import { FormsControl } from './modules/formControl'
 
 export const OperationModal = ({
   user,
+  created,
   updateOperation,
   newOperation,
   setNewOperation,
@@ -30,7 +31,7 @@ export const OperationModal = ({
       status: modalState.data.status
     })
   }, [])
-
+  console.log(modalState)
   return (
     <Modal
       disablePortal
@@ -47,6 +48,9 @@ export const OperationModal = ({
         <Paper className={classes.tableHeaders}>
           <Typography className={classes.header}>
             ID DE USUARIO: {user.user._id}
+          </Typography>
+          <Typography className={classes.header}>
+            ID DE OPERACION: {modalState.data._id}
           </Typography>
           <Typography className={classes.header}>
             STATUS: {modalState.data.status}
@@ -100,10 +104,23 @@ export const OperationModal = ({
         </Paper>
         <Button
           className={classes.orderHeader}
-          onClick={() => updateOperation(newOperation)}
+          onClick={() =>
+            updateOperation(
+              modalState.data._id,
+              user.user._id,
+              newOperation.description,
+              newOperation.category,
+              newOperation.amount,
+              newOperation.date,
+              newOperation.status
+            )
+          }
         >
-          ACEPT
+          ACTUALIZAR
         </Button>
+        <Typography className={classes.created}>
+          {created && created === 'Operacion registrada'}
+        </Typography>
       </Paper>
     </Modal>
   )

@@ -39,7 +39,6 @@ router.post('/create', async (req, res) => {
 })
 
 router.put('/update', async (req, res) => {
-  console.log('me llamaste')
   const body = req.body
   const { token } = req.query
 

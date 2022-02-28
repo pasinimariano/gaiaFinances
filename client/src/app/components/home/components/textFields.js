@@ -1,5 +1,6 @@
 import React from 'react'
 import TextField from '@material-ui/core/TextField'
+import { Typography } from '@material-ui/core'
 
 export const TextFields = ({
   name,
@@ -21,7 +22,7 @@ export const TextFields = ({
         onChange={onChange}
         className={classes.field}
       />
-      <div className={classes.error}>{errorHandler}</div>
+      <Typography className={classes.error}>{errorHandler}</Typography>
     </>
   )
 }

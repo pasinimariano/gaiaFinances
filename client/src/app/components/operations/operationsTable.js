@@ -53,20 +53,18 @@ export const OperationsTable = ({
         <TableBody className={classes.tableBody}>
           {paginationState &&
             paginationState.map(transaction => (
-              <>
-                <TableRow
-                  key={transaction._id}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                  onClick={() => handleOpen(transaction)}
-                >
-                  <TableCell align='left'>{transaction._id}</TableCell>
-                  <TableCell align='left'>{transaction.description}</TableCell>
-                  <TableCell align='left'>{transaction.category}</TableCell>
-                  <TableCell align='left'>{transaction.status}</TableCell>
-                  <TableCell align='left'>${transaction.amount}</TableCell>
-                  <TableCell align='left'>{transaction.date}</TableCell>
-                </TableRow>
-              </>
+              <TableRow
+                key={transaction._id}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                onClick={() => handleOpen(transaction)}
+              >
+                <TableCell align='left'>{transaction._id}</TableCell>
+                <TableCell align='left'>{transaction.description}</TableCell>
+                <TableCell align='left'>{transaction.category}</TableCell>
+                <TableCell align='left'>{transaction.status}</TableCell>
+                <TableCell align='left'>${transaction.amount}</TableCell>
+                <TableCell align='left'>{transaction.date}</TableCell>
+              </TableRow>
             ))}
         </TableBody>
         <Pagination

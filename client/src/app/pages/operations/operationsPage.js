@@ -99,6 +99,7 @@ const OperationsPage = ({
       {modalState.isOpen ? (
         <OperationModal
           user={user}
+          created={created}
           handleChange={handleChange}
           modalState={modalState}
           handleClose={handleClose}

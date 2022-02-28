@@ -66,7 +66,9 @@ export const AddNewOperation = ({
       >
         Crear
       </Button>
-      <Typography className={classes.created}>{created}</Typography>
+      <Typography className={classes.created}>
+        {created && created === 'Operacion registrada'}
+      </Typography>
     </Paper>
   )
 }

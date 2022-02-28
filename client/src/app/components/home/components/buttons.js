@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
 
 export const Buttons = ({
   buttonOne,
@@ -24,7 +25,7 @@ export const Buttons = ({
           {labelTwo}
         </Button>
       </div>
-      <div className={classes.error}>{errorHandler}</div>
+      <Typography className={classes.error}>{errorHandler}</Typography>
     </>
   )
 }

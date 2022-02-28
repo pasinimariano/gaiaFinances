@@ -73,7 +73,6 @@ export const Statemets = user => {
   }
 
   const handleChange = event => {
-    console.log(event)
     const { name, value } = event.target
     setNewOperation({
       ...newOperation,
@@ -88,6 +87,7 @@ export const Statemets = user => {
   }
 
   const updateOperation = async (
+    _id,
     userId,
     description,
     category,
@@ -95,13 +95,16 @@ export const Statemets = user => {
     date,
     status
   ) => {
-    const params = { userId, description, category, amount, date, status }
+    const params = { _id, userId, description, category, amount, date, status }
     const response = await axios.put(
       `http://localhost:3001/operation/update?token=${user.token}`,
       params
     )
-    console.log('aca', response)
-    return response
+
+    if (response.data && response.data.message === 'Successfully updated') {
+      setCreated('Operacion registrada')
+      setModalState({ ...modalState, isOpen: false })
+    }
   }
 
   const handleOpen = operation => {
@@ -109,6 +112,7 @@ export const Statemets = user => {
       isOpen: true,
       data: operation
     })
+    setCreated('')
   }
 
   const handleClose = () => {
