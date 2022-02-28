@@ -15,7 +15,8 @@ const OperationsPage = ({
   paginationState,
   filteredOperations,
   setFilters,
-  setPagination
+  setPagination,
+  getAllOperations
 }) => {
   const classes = Styles()
 
@@ -25,23 +26,40 @@ const OperationsPage = ({
     nextPage,
     prevPage,
     selection,
-    setSelection
-  } = Statemets()
+    setSelection,
+    newOperation,
+    postOperation,
+    handleChange,
+    getAllCategories,
+    created
+  } = Statemets(user)
 
   useEffect(() => {
+    console.log('entre')
     setFilters(userOperations, selection)
-  }, [selection])
+  }, [selection, userOperations])
 
   useEffect(() => {
     setPagination(filteredOperations, indexFirstOperation, indexLastOperation)
-  }, [indexFirstOperation, indexLastOperation, filteredOperations])
+  }, [
+    indexFirstOperation,
+    indexLastOperation,
+    filteredOperations,
+    userOperations
+  ])
+
+  useEffect(() => {
+    if (created) {
+      getAllOperations(user.user._id, user.token)
+    }
+  }, [created])
 
   return (
     <Grid container>
       <Paper className={classes.userContainer} elevation={0}>
-        USER
+        USER INFO
       </Paper>
-      <Grid item lg={8} className={classes.tableContainer}>
+      <Grid item xs={12} md={12} lg={8} className={classes.tableContainer}>
         <OperationsTable
           userOperations={filteredOperations}
           paginationState={paginationState}
@@ -52,8 +70,16 @@ const OperationsPage = ({
           classes={classes}
         />
       </Grid>
-      <Grid item lg={4}>
-        <Controls setSelection={setSelection} classes={classes} />
+      <Grid item xs={12} md={12} lg={4}>
+        <Controls
+          setSelection={setSelection}
+          postOperation={postOperation}
+          newOperation={newOperation}
+          handleChange={handleChange}
+          getAllCategories={getAllCategories}
+          created={created}
+          classes={classes}
+        />
       </Grid>
     </Grid>
   )

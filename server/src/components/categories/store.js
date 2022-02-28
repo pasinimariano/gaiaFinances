@@ -3,7 +3,9 @@ const Db = require('../../db/')
 const { Categories } = Db.CONNECTION.models
 
 const getAllCategories = async () => {
-  return await Categories.findAll()
+  return await Categories.findAll().then(json => {
+    return { message: 'Success', categories: json }
+  })
 }
 
 const getCategory = async _id => {

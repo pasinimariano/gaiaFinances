@@ -45,7 +45,7 @@ const createOperation = async data => {
         operation: newOperation
       }
     } catch (error) {
-      return { error: error.errors[0].message }
+      return { error: error }
     }
   }
   return {

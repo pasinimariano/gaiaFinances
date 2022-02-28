@@ -15,10 +15,10 @@ router.get('/all', async (req, res) => {
 })
 
 router.post('/create', async (req, res) => {
-  const body = req.body
+  const { userId } = req.body
   const { token } = req.query
 
-  const response = await operationPost(body, token)
+  const response = await operationPost(userId, token)
 
   /*
   response.hasOwnProperty('missing')

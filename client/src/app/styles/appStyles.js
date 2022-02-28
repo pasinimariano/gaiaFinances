@@ -2,8 +2,6 @@ import { makeStyles, rgbToHex } from '@material-ui/core'
 
 export const Styles = makeStyles({
   root: {
-    width: '100wv',
-    height: '100vh',
     backgroundColor: '#EEE6CE'
   },
   layout: {

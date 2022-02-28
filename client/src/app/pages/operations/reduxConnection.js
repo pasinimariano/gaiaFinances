@@ -1,6 +1,7 @@
 import {
   pagination,
-  setFilters
+  setFilters,
+  getAllOperations
 } from '../../../redux/actions/actionsOperations'
 
 export const mapStateToProps = state => {
@@ -14,6 +15,8 @@ export const mapStateToProps = state => {
 
 export const mapDispatchToProps = dispatch => {
   return {
+    getAllOperations: (userId, token) =>
+      dispatch(getAllOperations(userId, token)),
     setFilters: (allOperations, filter) =>
       dispatch(setFilters(allOperations, filter)),
     setPagination: (allOperations, page, offset, filter) =>
