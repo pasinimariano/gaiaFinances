@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { GET_OPERATIONS, PAGINATION } from '.'
+import { GET_OPERATIONS, PAGINATION, FILTER } from '.'
 import { getCategory } from './actionsCategories'
 
 const formatedData = async operations => {
@@ -34,25 +34,51 @@ export const getAllOperations = (userId, token) => {
   }
 }
 
-export const pagination = (allOperations, page, offset, filter) => {
-  let response
+export const setFilters = (allOperations, filter) => {
   return async dispatch => {
-    if (!filter) {
-      const paginateOperations = allOperations.operations
-        .sort((a, b) => new Date(b.date) - new Date(a.date))
-        .slice(page, offset)
-      response = await formatedData(paginateOperations)
-    } else {
+    if (filter === 'all') {
       const filteredOperations = allOperations.operations
-        .sort((a, b) => new Date(b.date) - new Date(a.date))
-        .filter(operation => {
-          operation.status === filter
-        })
-      const paginateOperations = filteredOperations.slice(page, offset)
+      const response = await formatedData(filteredOperations)
 
-      response = await formatedData(paginateOperations)
+      return dispatch({ type: FILTER, payload: response })
+    } else if (filter === 'onlyIncomes') {
+      const filteredOperations = allOperations.operations.filter(operation => {
+        return operation.status === 'Income'
+      })
+
+      const response = await formatedData(filteredOperations)
+
+      return dispatch({ type: FILTER, payload: response })
+    } else if (filter === 'onlyExpenditures') {
+      const filteredOperations = allOperations.operations.filter(operation => {
+        return operation.status === 'Expenditure'
+      })
+
+      const response = await formatedData(filteredOperations)
+
+      return dispatch({ type: FILTER, payload: response })
+    } else if (filter === 'oldest') {
+      const sortedOperations = allOperations.operations.sort(
+        (a, b) => new Date(a.date) - new Date(b.date)
+      )
+
+      const response = await formatedData(sortedOperations)
+
+      return dispatch({ type: FILTER, payload: response })
+    } else if (filter === 'newest') {
+      const sortedOperations = allOperations.operations.sort(
+        (a, b) => new Date(b.date) - new Date(a.date)
+      )
+
+      const response = await formatedData(sortedOperations)
+
+      return dispatch({ type: FILTER, payload: response })
     }
-
-    return dispatch({ type: PAGINATION, payload: response })
   }
+}
+
+export const pagination = (allOperations, page, offset) => {
+  const paginatedOperations = allOperations.slice(page, offset)
+
+  return { type: PAGINATION, payload: paginatedOperations }
 }

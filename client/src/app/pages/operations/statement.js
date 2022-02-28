@@ -1,9 +1,10 @@
 import { useState } from 'react'
+import axios from 'axios'
 
 export const Statemets = () => {
   const [indexFirstOperation, setindexFirstOperation] = useState(0)
   const [indexLastOperation, setindexLastOperation] = useState(10)
-  const [selection, setSelection] = useState()
+  const [selection, setSelection] = useState('all')
   const operationsXpage = 10
 
   const nextPage = operation => {
@@ -19,6 +20,8 @@ export const Statemets = () => {
       setindexLastOperation(indexLastOperation - operationsXpage)
     }
   }
+
+  const AddNewOperation = () => {}
 
   return {
     indexFirstOperation,

@@ -4,7 +4,8 @@ import {
   DELETE_USER,
   IS_LOGGING,
   GET_OPERATIONS,
-  PAGINATION
+  PAGINATION,
+  FILTER
 } from '../actions/'
 
 export const rootReducer = (state = initialState, action) => {
@@ -32,6 +33,12 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         UserOperations: action.payload
+      }
+
+    case FILTER:
+      return {
+        ...state,
+        OperationFilter: action.payload
       }
 
     case PAGINATION:

@@ -4,3 +4,4 @@ export const IS_LOGGING = 'IS_LOGGING'
 
 export const GET_OPERATIONS = 'GET_OPERATIONS'
 export const PAGINATION = 'PAGINATION'
+export const FILTER = 'FILTER'

@@ -18,7 +18,7 @@ export const Pagination = ({
       <Grid item lg={6} className={classes.gridCount}>
         <Typography className={classes.count}>
           {indexFirstOperation + 1} - {indexLastOperation} of
-          {userOperations.operations.length}
+          {userOperations.length}
         </Typography>
       </Grid>
       <Grid item lg={6} className={classes.pagination}>

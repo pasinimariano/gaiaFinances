@@ -6,36 +6,35 @@ import Paper from '@material-ui/core/Paper'
 import { mapStateToProps, mapDispatchToProps } from './reduxConnection'
 import { Statemets } from './statement'
 import { OperationsTable } from '../../components/operations/operationsTable'
+import { Controls } from '../../components/operations/controls'
 import { Styles } from '../../styles/operationsStyles'
 
 const OperationsPage = ({
   user,
   userOperations,
   paginationState,
+  filteredOperations,
+  setFilters,
   setPagination
 }) => {
   const classes = Styles()
 
   const {
     indexFirstOperation,
-    setindexFirstOperation,
     indexLastOperation,
-    setindexLastOperation,
     nextPage,
     prevPage,
-    operationsXpage,
     selection,
     setSelection
   } = Statemets()
 
   useEffect(() => {
-    setPagination(
-      userOperations,
-      indexFirstOperation,
-      indexLastOperation,
-      selection
-    )
-  }, [indexFirstOperation, indexLastOperation, selection])
+    setFilters(userOperations, selection)
+  }, [selection])
+
+  useEffect(() => {
+    setPagination(filteredOperations, indexFirstOperation, indexLastOperation)
+  }, [indexFirstOperation, indexLastOperation, filteredOperations])
 
   return (
     <Grid container>
@@ -44,9 +43,9 @@ const OperationsPage = ({
       </Paper>
       <Grid item lg={8} className={classes.tableContainer}>
         <OperationsTable
-          userOperations={userOperations}
+          userOperations={filteredOperations}
           paginationState={paginationState}
-          nextPage={() => nextPage(userOperations.operations)}
+          nextPage={() => nextPage(filteredOperations)}
           prevPage={prevPage}
           indexFirstOperation={indexFirstOperation}
           indexLastOperation={indexLastOperation}
@@ -54,8 +53,7 @@ const OperationsPage = ({
         />
       </Grid>
       <Grid item lg={4}>
-        {' '}
-        CONTROLES{' '}
+        <Controls setSelection={setSelection} classes={classes} />
       </Grid>
     </Grid>
   )
