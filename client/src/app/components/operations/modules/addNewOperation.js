@@ -29,14 +29,11 @@ export const AddNewOperation = ({
     getCategories()
   }, [])
 
-  useEffect(() => {
-    if (created) {
-    }
-  }, [created])
-
   return (
-    <Paper>
-      <Typography> CREAR NUEVA OPERACION </Typography>
+    <Paper className={classes.postContainer}>
+      <Typography className={classes.orderHeader}>
+        CREAR NUEVA OPERACION
+      </Typography>
       <TextFields
         name='amount'
         label='Importe'
@@ -75,8 +72,13 @@ export const AddNewOperation = ({
         onChange={handleChange}
         variant='standard'
       />
-      <Button onClick={() => postOperation(newOperation)}> Crear </Button>
-      <Typography>{created}</Typography>
+      <Button
+        onClick={() => postOperation(newOperation)}
+        className={classes.orderHeader}
+      >
+        Crear
+      </Button>
+      <Typography className={classes.created}>{created}</Typography>
     </Paper>
   )
 }

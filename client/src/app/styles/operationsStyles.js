@@ -60,7 +60,7 @@ export const Styles = makeStyles({
     alignItems: 'center'
   },
   controls: {
-    height: '70%',
+    height: '80%',
     width: '70%',
     backgroundColor: '#F1E0AC',
     display: 'flex',
@@ -69,7 +69,7 @@ export const Styles = makeStyles({
     flexDirection: 'column'
   },
   order: {
-    marginTop: '25px',
+    marginTop: '10px',
     width: '80%',
     height: '20%',
     display: 'flex',
@@ -119,5 +119,16 @@ export const Styles = makeStyles({
     width: '5%',
     height: '80%',
     backgroundColor: '#B8405E'
+  },
+  postContainer: {
+    backgroundColor: 'rgba(0,0,0,0)',
+    width: '80%',
+    marginTop: '20px',
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  created: {
+    color: '#B8405E',
+    fontWeight: 'bolder'
   }
 })
