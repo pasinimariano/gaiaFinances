@@ -32,12 +32,12 @@ export const Styles = makeStyles({
     fontWeight: 'bolder'
   },
   tableBody: {
-    height: '83% '
+    height: '83%'
   },
   paginationContainer: {
-    width: '100%',
-    marginRight: 0,
-    marginTop: '15px'
+    backgroundColor: 'red',
+    marginTop: '15px',
+    marginLeft: '100%'
   },
   gridCount: {
     display: 'flex',
@@ -60,13 +60,14 @@ export const Styles = makeStyles({
     alignItems: 'center'
   },
   controls: {
-    height: '80%',
-    width: '70%',
+    height: '100%',
+    width: '80%',
     backgroundColor: '#F1E0AC',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    marginBottom: '25px'
   },
   order: {
     marginTop: '10px',

@@ -11,7 +11,6 @@ import {
 } from '@material-ui/core'
 
 import { Pagination } from './modules/pagination'
-import { OperationModal } from './operationModal'
 
 export const OperationsTable = ({
   userOperations,
@@ -20,11 +19,7 @@ export const OperationsTable = ({
   prevPage,
   indexFirstOperation,
   indexLastOperation,
-  updateOperation,
-  openModal,
-  handleChange,
   handleOpen,
-  handleClose,
   classes
 }) => {
   const headers = [

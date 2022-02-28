@@ -9,6 +9,7 @@ import { OperationsTable } from '../../components/operations/operationsTable'
 import { Controls } from '../../components/operations/controls'
 import { Styles } from '../../styles/operationsStyles'
 import { OperationModal } from '../../components/operations/operationModal'
+import { Hidden } from '@material-ui/core'
 
 const OperationsPage = ({
   user,
@@ -69,9 +70,11 @@ const OperationsPage = ({
 
   return (
     <Grid container>
-      <Paper className={classes.userContainer} elevation={0}>
-        USER INFO
-      </Paper>
+      <Hidden mdDown>
+        <Paper className={classes.userContainer} elevation={0}>
+          USER INFO
+        </Paper>
+      </Hidden>
       <Grid item xs={12} md={12} lg={8} className={classes.tableContainer}>
         <OperationsTable
           userOperations={filteredOperations}
