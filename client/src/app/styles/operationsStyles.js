@@ -35,7 +35,7 @@ export const Styles = makeStyles({
     height: '83%'
   },
   paginationContainer: {
-    backgroundColor: 'red',
+    width: '150%',
     marginTop: '15px',
     marginLeft: '100%'
   },
