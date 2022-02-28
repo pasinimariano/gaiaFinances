@@ -8,6 +8,7 @@ import { Statemets } from './statement'
 import { OperationsTable } from '../../components/operations/operationsTable'
 import { Controls } from '../../components/operations/controls'
 import { Styles } from '../../styles/operationsStyles'
+import { OperationModal } from '../../components/operations/operationModal'
 
 const OperationsPage = ({
   user,
@@ -28,14 +29,25 @@ const OperationsPage = ({
     selection,
     setSelection,
     newOperation,
+    setNewOperation,
     postOperation,
     handleChange,
     getAllCategories,
-    created
+    created,
+    updateOperation,
+    modalState,
+    handleOpen,
+    handleClose,
+    getCategories,
+    categories,
+    status
   } = Statemets(user)
 
   useEffect(() => {
-    console.log('entre')
+    getCategories()
+  }, [])
+
+  useEffect(() => {
     setFilters(userOperations, selection)
   }, [selection, userOperations])
 
@@ -67,6 +79,7 @@ const OperationsPage = ({
           prevPage={prevPage}
           indexFirstOperation={indexFirstOperation}
           indexLastOperation={indexLastOperation}
+          handleOpen={handleOpen}
           classes={classes}
         />
       </Grid>
@@ -77,10 +90,26 @@ const OperationsPage = ({
           newOperation={newOperation}
           handleChange={handleChange}
           getAllCategories={getAllCategories}
+          categories={categories}
+          status={status}
           created={created}
           classes={classes}
         />
       </Grid>
+      {modalState.isOpen ? (
+        <OperationModal
+          user={user}
+          handleChange={handleChange}
+          modalState={modalState}
+          handleClose={handleClose}
+          newOperation={newOperation}
+          setNewOperation={setNewOperation}
+          categories={categories}
+          status={status}
+          updateOperation={updateOperation}
+          classes={classes}
+        />
+      ) : null}
     </Grid>
   )
 }

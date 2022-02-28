@@ -13,22 +13,10 @@ export const AddNewOperation = ({
   getAllCategories,
   postOperation,
   created,
+  categories,
+  status,
   classes
 }) => {
-  const [categories, setCategories] = useState()
-  const status = [
-    { _id: 'Income', name: 'Income' },
-    { _id: 'Expenditure', name: 'Expenditure' }
-  ]
-
-  useEffect(() => {
-    const getCategories = async () => {
-      const cats = await getAllCategories()
-      setCategories(cats)
-    }
-    getCategories()
-  }, [])
-
   return (
     <Paper className={classes.postContainer}>
       <Typography className={classes.orderHeader}>

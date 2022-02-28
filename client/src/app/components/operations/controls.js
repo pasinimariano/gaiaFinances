@@ -12,6 +12,8 @@ export const Controls = ({
   handleChange,
   getAllCategories,
   created,
+  categories,
+  status,
   classes
 }) => {
   return (
@@ -24,6 +26,8 @@ export const Controls = ({
           newOperation={newOperation}
           handleChange={handleChange}
           getAllCategories={getAllCategories}
+          categories={categories}
+          status={status}
           created={created}
           classes={classes}
         />

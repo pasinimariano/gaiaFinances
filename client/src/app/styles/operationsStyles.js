@@ -130,5 +130,30 @@ export const Styles = makeStyles({
   created: {
     color: '#B8405E',
     fontWeight: 'bolder'
+  },
+  modalContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  paper: {
+    backgroundColor: '#F1E0AC',
+    border: '2px solid #000',
+    height: '50vh',
+    width: '50wv',
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  amountDate: {
+    marginTop: '25px',
+    display: 'flex',
+    justifyContent: 'space-around',
+    flexDirection: 'row',
+    backgroundColor: 'rgba(0,0,0,0)'
+  },
+  description: {
+    backgroundColor: 'rgba(0,0,0,0)',
+    marginTop: '25px',
+    marginBottom: '50px'
   }
 })
