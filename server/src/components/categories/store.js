@@ -2,12 +2,26 @@ const Db = require('../../db/')
 
 const { Categories } = Db.CONNECTION.models
 
+const getAllCategories = async () => {
+  return await Categories.findAll()
+}
+
+const getCategory = async _id => {
+  return await Categories.findOne({ where: { _id: _id } })
+    .then(category => {
+      return { message: 'Success', category: category.dataValues }
+    })
+    .catch(error => {
+      return { error: error }
+    })
+}
+
 const categoryPost = async name => {
   return await Categories.create({ name })
     .then(() => {
       return { message: `Category ${name} created` }
     })
-    .catach(error => {
+    .catch(error => {
       return { error: error }
     })
 }
@@ -23,6 +37,8 @@ const CategoryDelete = async name => {
 }
 
 module.exports = {
+  getAllCategories,
+  getCategory,
   categoryPost,
   CategoryDelete
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import { Route, Routes, Navigate } from 'react-router-dom'
 
 import HomePage from './pages/home/homePage'
+import DashboardPage from './pages/dashboard/dashboardPage'
 import OperationsPage from './pages/operations/operationsPage'
 
 export const RoutesWeb = ({ isLoggin }) => {
@@ -11,9 +12,14 @@ export const RoutesWeb = ({ isLoggin }) => {
       <Route
         exact
         path='/dashboard'
+        element={!isLoggin ? <Navigate to='/' /> : <DashboardPage />}
+      />
+
+      <Route
+        exact
+        path='/operations'
         element={!isLoggin ? <Navigate to='/' /> : <OperationsPage />}
       />
-      <Route />
     </Routes>
   )
 }

@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core'
 
 export const Styles = makeStyles({
-  logoContainer: {
+  userContainer: {
     height: '6vh',
     width: '100vw',
     display: 'flex',
@@ -9,66 +9,20 @@ export const Styles = makeStyles({
     justifyContent: 'center',
     backgroundColor: 'rgba(0,0,0,0)'
   },
-  dashboard: {
-    width: '100vw',
-    height: '88vh'
-  },
-  allOperations: {
-    backgroundColor: 'rgba(0,0,0,0)',
-    height: '20%',
-    display: 'flex'
-  },
   tableContainer: {
-    backgroundColor: 'rgba(0,0,0,0)',
-    height: '30%',
+    background: 'rgba(0,0,0,0)',
+    width: '100%',
+    height: '88vh',
     display: 'flex',
-    flexDirection: 'column',
+    justifyContent: 'center',
     alignItems: 'center'
   },
-  tableTitle: {
-    fontSize: '22px',
-    margin: '10px'
-  },
-  graphContainer: {
-    height: '50%'
-  },
-  dataContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  data: {
-    fontSize: '45px',
-    fontWeight: 'bolder'
-  },
-  incomes: {
-    height: '75%',
-    width: '70%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#2EB086'
-  },
-  expenditures: {
-    height: '75%',
-    width: '70%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#B8405E'
-  },
-  balance: {
-    height: '75%',
-    width: '70%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#313552'
-  },
   table: {
-    backgroundColor: 'rgba(0,0,0,0)',
-    width: '92%',
-    marginBottom: '10px'
+    width: '90%',
+    height: '80%',
+    backgroundColor: '#F1E0AC',
+    display: 'flex',
+    justifyContent: 'center'
   },
   tableHeaders: {
     backgroundColor: '#203239'
@@ -76,5 +30,26 @@ export const Styles = makeStyles({
   header: {
     color: '#B8405E',
     fontWeight: 'bolder'
+  },
+  tableBody: {
+    height: '83% '
+  },
+  paginationContainer: {
+    width: '100%',
+    marginRight: 0,
+    marginTop: '15px'
+  },
+  gridCount: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  count: {
+    fontWeight: 'bolder'
+  },
+  pagination: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-around'
   }
 })

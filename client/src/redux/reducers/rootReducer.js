@@ -3,7 +3,8 @@ import {
   LOGIN_USER,
   DELETE_USER,
   IS_LOGGING,
-  GET_OPERATIONS
+  GET_OPERATIONS,
+  PAGINATION
 } from '../actions/'
 
 export const rootReducer = (state = initialState, action) => {
@@ -31,6 +32,12 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         UserOperations: action.payload
+      }
+
+    case PAGINATION:
+      return {
+        ...state,
+        Pagination: action.payload
       }
 
     default:

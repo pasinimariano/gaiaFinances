@@ -1,73 +1,34 @@
 import { useState } from 'react'
 
-export const Statements = () => {
-  const [transactions, setTransactions] = useState({
-    incomes: 0,
-    expenditures: 0,
-    balance: 0
-  })
-  const [lastTransactions, setLastTransactions] = useState()
+export const Statemets = () => {
+  const [indexFirstOperation, setindexFirstOperation] = useState(0)
+  const [indexLastOperation, setindexLastOperation] = useState(10)
+  const [selection, setSelection] = useState()
+  const operationsXpage = 10
 
-  const intToString = value => {
-    var suffixes = ['', 'k', 'm', 'b', 't']
-    var suffixNum = Math.floor(('' + value).length / 3)
-    var shortValue = parseFloat(
-      (suffixNum != 0 ? value / Math.pow(1000, suffixNum) : value).toPrecision(
-        2
-      )
-    )
-    if (shortValue % 1 != 0) {
-      shortValue = shortValue.toFixed(1)
+  const nextPage = operation => {
+    if (indexLastOperation < operation.length) {
+      setindexFirstOperation(indexFirstOperation + operationsXpage)
+      setindexLastOperation(indexLastOperation + operationsXpage)
     }
-    return shortValue + suffixes[suffixNum]
   }
 
-  const getIncomes = operations => {
-    const incomes = operations.operations.filter(
-      operation => operation.status === 'Income'
-    )
-
-    const total = incomes
-      .map(income => income.amount)
-      .reduce((prev, curr) => prev + curr)
-
-    return total
-  }
-
-  const getExpenditures = operations => {
-    const expenditures = operations.operations.filter(
-      operation => operation.status === 'Expenditure'
-    )
-
-    const total = expenditures
-      .map(expenditure => expenditure.amount)
-      .reduce((prev, curr) => prev + curr)
-
-    return total
-  }
-
-  const getBalance = (incomes, expenditures) => {
-    const total = incomes - expenditures
-
-    return intToString(total)
-  }
-
-  const getLastTransactions = operations => {
-    const order = operations.sort((a, b) => new Date(b.date) - new Date(a.date))
-
-    const lastest = order.slice(0, 10)
-
-    setLastTransactions(lastest)
+  const prevPage = () => {
+    if (indexFirstOperation > 0) {
+      setindexFirstOperation(indexFirstOperation - operationsXpage)
+      setindexLastOperation(indexLastOperation - operationsXpage)
+    }
   }
 
   return {
-    transactions,
-    setTransactions,
-    getIncomes,
-    getExpenditures,
-    getBalance,
-    intToString,
-    lastTransactions,
-    getLastTransactions
+    indexFirstOperation,
+    setindexFirstOperation,
+    indexLastOperation,
+    setindexLastOperation,
+    nextPage,
+    prevPage,
+    operationsXpage,
+    selection,
+    setSelection
   }
 }

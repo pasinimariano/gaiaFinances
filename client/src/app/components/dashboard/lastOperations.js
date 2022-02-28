@@ -16,6 +16,7 @@ export const LastOperations = ({ lastTransactions, classes }) => {
   const getDate = date => {
     return new Date(date).toDateString()
   }
+
   return (
     <TableContainer component={Paper} className={classes.table}>
       <Table sx={{ minWidth: 650 }} aria-label='simple table'>
