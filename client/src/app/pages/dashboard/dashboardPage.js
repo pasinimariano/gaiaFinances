@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
+import Hidden from '@material-ui/core/Hidden'
 
 import { mapStateToProps, mapDispatchToProps } from './reduxConnection'
 import { InfoOperations } from '../../components/dashboard/infoOperations'
@@ -52,7 +53,7 @@ const DashboardPage = ({ user, operations, getAllOperations }) => {
         LOGO
       </Paper>
       <Grid container className={classes.dashboard}>
-        <Grid item lg={10}>
+        <Grid item md={12} lg={10}>
           <Paper className={classes.allOperations} elevation={0}>
             <InfoOperations operations={transactions} classes={classes} />
           </Paper>
@@ -69,9 +70,11 @@ const DashboardPage = ({ user, operations, getAllOperations }) => {
             />
           </Paper>
         </Grid>
-        <Grid item lg={2}>
-          USER
-        </Grid>
+        <Hidden mdDown>
+          <Grid item lg={2}>
+            USER
+          </Grid>
+        </Hidden>
       </Grid>
     </Grid>
   )

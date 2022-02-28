@@ -8,14 +8,14 @@ import BarChartOutlinedIcon from '@material-ui/icons/BarChartOutlined'
 
 export const InfoOperations = ({ operations, classes }) => {
   return (
-    <Grid container>
-      <Grid item lg={4} className={classes.dataContainer}>
+    <Grid container className={classes.operationData}>
+      <Grid item xs={12} md={4} lg={4} className={classes.dataContainer}>
         <Paper className={classes.incomes}>
           <KeyboardArrowUpOutlinedIcon className={classes.data} />
           <Typography className={classes.data}>{operations.incomes}</Typography>
         </Paper>
       </Grid>
-      <Grid item lg={4} className={classes.dataContainer}>
+      <Grid item xs={12} md={4} lg={4} className={classes.dataContainer}>
         <Paper className={classes.expenditures}>
           <KeyboardArrowDownOutlinedIcon className={classes.data} />
           <Typography className={classes.data}>
@@ -23,7 +23,7 @@ export const InfoOperations = ({ operations, classes }) => {
           </Typography>
         </Paper>
       </Grid>
-      <Grid item lg={4} className={classes.dataContainer}>
+      <Grid item xs={12} md={4} lg={4} className={classes.dataContainer}>
         <Paper className={classes.balance}>
           <BarChartOutlinedIcon className={classes.data} />
           <Typography className={classes.data}>{operations.balance}</Typography>

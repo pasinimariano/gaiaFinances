@@ -15,6 +15,7 @@ export const Styles = makeStyles({
   },
   allOperations: {
     backgroundColor: 'rgba(0,0,0,0)',
+    width: '100%',
     height: '20%',
     display: 'flex'
   },
@@ -30,13 +31,19 @@ export const Styles = makeStyles({
     margin: '10px'
   },
   graphContainer: {
-    height: '50%',
-    backgroundColor: 'rgba(0,0,0,0)'
+    height: '48%',
+    backgroundColor: 'rgba(0,0,0,0)',
+    marginTop: '50px'
+  },
+  operationData: {
+    display: 'flex',
+    justifyContent: 'center'
   },
   dataContainer: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    width: '100%'
   },
   data: {
     fontSize: '45px',
