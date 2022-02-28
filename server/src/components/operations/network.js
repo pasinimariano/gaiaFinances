@@ -4,7 +4,12 @@ const controller = require('./controller')
 
 const router = express.Router()
 
-const { operationsGet, operationPost, operationPut } = controller
+const {
+  operationsGet,
+  operationPost,
+  operationPut,
+  operationDelete
+} = controller
 
 router.get('/all', async (req, res) => {
   const { userId, token } = req.query
@@ -43,6 +48,15 @@ router.put('/update', async (req, res) => {
   const { token } = req.query
 
   const response = await operationPut(body, token)
+
+  res.json(response)
+})
+
+router.delete('/delete', async (req, res) => {
+  const { _id } = req.body
+  const { token } = req.query
+
+  const response = await operationDelete(_id, token)
 
   res.json(response)
 })

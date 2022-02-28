@@ -135,6 +135,17 @@ export const Statemets = user => {
     setCategories(cats)
   }
 
+  const deleteOperation = async _id => {
+    const response = await axios.delete(
+      `http://localhost:3001/operation/delete?token=${user.token}`,
+      { data: { _id } }
+    )
+
+    if (response.data.message && response.data.message === 'Success') {
+      setCreated('Borrada')
+    }
+  }
+
   return {
     indexFirstOperation,
     setindexFirstOperation,
@@ -157,6 +168,7 @@ export const Statemets = user => {
     handleClose,
     getCategories,
     categories,
-    status
+    status,
+    deleteOperation
   }
 }

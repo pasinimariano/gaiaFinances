@@ -19,6 +19,7 @@ export const OperationModal = ({
   handleClose,
   categories,
   status,
+  deleteOperation,
   classes
 }) => {
   useEffect(() => {
@@ -31,7 +32,7 @@ export const OperationModal = ({
       status: modalState.data.status
     })
   }, [])
-  console.log(modalState)
+
   return (
     <Modal
       disablePortal
@@ -121,6 +122,12 @@ export const OperationModal = ({
         <Typography className={classes.created}>
           {created && created === 'Operacion registrada'}
         </Typography>
+        <Button
+          className={classes.deleteButton}
+          onClick={() => deleteOperation(modalState.data._id)}
+        >
+          BORRAR
+        </Button>
       </Paper>
     </Modal>
   )

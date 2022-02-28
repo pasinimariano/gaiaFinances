@@ -40,6 +40,7 @@ const OperationsPage = ({
     handleClose,
     getCategories,
     categories,
+    deleteOperation,
     status
   } = Statemets(user)
 
@@ -108,6 +109,7 @@ const OperationsPage = ({
           categories={categories}
           status={status}
           updateOperation={updateOperation}
+          deleteOperation={deleteOperation}
           classes={classes}
         />
       ) : null}

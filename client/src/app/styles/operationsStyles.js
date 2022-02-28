@@ -155,5 +155,8 @@ export const Styles = makeStyles({
     backgroundColor: 'rgba(0,0,0,0)',
     marginTop: '25px',
     marginBottom: '50px'
+  },
+  deleteButton: {
+    width: '10%'
   }
 })
