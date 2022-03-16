@@ -18,14 +18,12 @@ const searchUserByEmail = user => {
       if (json === null) {
         return false
       }
-
       const formatedData = {
-        _id: json._id,
-        email: json.email,
-        password: json.password,
-        firstname: json.firstName,
-        lastname: json.lastName,
-        created: json.createdAt
+        _id: json.dataValues._id,
+        email: json.dataValues.email,
+        password: json.dataValues.password,
+        firstname: json.dataValues.firstname,
+        lastname: json.dataValues.lastname
       }
       return formatedData
     })

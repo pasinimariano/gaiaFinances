@@ -17,11 +17,11 @@ export const LoginForm = ({
   logginState,
   classes
 }) => {
+  const navigate = useNavigate()
+
   useEffect(() => {
     userState.token ? isLogging() : null
   }, [userState])
-
-  const navigate = useNavigate()
 
   useEffect(() => {
     logginState ? navigate('/dashboard') : null

@@ -11,7 +11,8 @@ export const Styles = makeStyles({
   },
   dashboard: {
     width: '100vw',
-    height: '88vh'
+    height: '100%',
+    marginBottom: '10px'
   },
   allOperations: {
     backgroundColor: 'rgba(0,0,0,0)',
@@ -24,14 +25,15 @@ export const Styles = makeStyles({
     height: '30%',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: '25px'
   },
   tableTitle: {
     fontSize: '22px',
     margin: '10px'
   },
   graphContainer: {
-    height: '48%',
+    height: '40%',
     backgroundColor: 'rgba(0,0,0,0)',
     marginTop: '50px'
   },
@@ -84,5 +86,27 @@ export const Styles = makeStyles({
   header: {
     color: '#B8405E',
     fontWeight: 'bolder'
+  },
+  userTable: {
+    backgroundColor: '#F1E0AC',
+    height: '98%',
+    width: '95%'
+  },
+  userTableHeader: {
+    backgroundColor: '#203239',
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    height: '7%'
+  },
+  avatar: {
+    backgroundColor: '#B8405E',
+    fontWeight: 'bolder',
+    color: '#203239'
+  },
+  progressBar: {
+    width: '80%',
+    height: '3%',
+    marginLeft: '10%'
   }
 })

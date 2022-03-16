@@ -2,14 +2,16 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
+import { Typography } from '@material-ui/core'
 import Hidden from '@material-ui/core/Hidden'
 
 import { mapStateToProps, mapDispatchToProps } from './reduxConnection'
 import { InfoOperations } from '../../components/dashboard/infoOperations'
 import { LastOperations } from '../../components/dashboard/lastOperations'
+import { UserInfo } from '../../components/dashboard/userInfo'
 import { Statements } from './statement'
 import { Styles } from '../../styles/dashboardStyles'
-import { Typography } from '@material-ui/core'
+import { ChartOperations } from '../../components/dashboard/chartOperations'
 
 const DashboardPage = ({ user, operations, getAllOperations }) => {
   const classes = Styles()
@@ -22,7 +24,10 @@ const DashboardPage = ({ user, operations, getAllOperations }) => {
     getBalance,
     intToString,
     getLastTransactions,
-    lastTransactions
+    lastTransactions,
+    getChartData,
+    chartDataX,
+    chartDataY
   } = Statements()
 
   useEffect(() => {
@@ -32,15 +37,18 @@ const DashboardPage = ({ user, operations, getAllOperations }) => {
       if (operations.operations.length > 0) {
         const incomes = await getIncomes(operations)
         const expenditures = await getExpenditures(operations)
-        const balance = getBalance(incomes, expenditures)
+        const balance = getBalance(incomes.total, expenditures.total)
 
         setTransactions({
-          incomes: intToString(incomes),
-          expenditures: intToString(expenditures),
+          incomes: intToString(incomes.total),
+          totalIncomes: intToString(incomes.count),
+          expenditures: intToString(expenditures.total),
+          totalExpeditures: intToString(expenditures.count),
           balance
         })
 
-        await getLastTransactions(operations.operations)
+        getLastTransactions(operations.operations)
+        getChartData(operations.operations)
       }
     }
 
@@ -58,7 +66,11 @@ const DashboardPage = ({ user, operations, getAllOperations }) => {
             <InfoOperations operations={transactions} classes={classes} />
           </Paper>
           <Paper className={classes.graphContainer} elevation={0}>
-            GRAFICO DE MOVIMIENTOS
+            <ChartOperations
+              chartDataX={chartDataX}
+              chartDataY={chartDataY}
+              classes={classes}
+            />
           </Paper>
           <Paper className={classes.tableContainer} elevation={0}>
             <Typography className={classes.tableTitle}>
@@ -72,7 +84,11 @@ const DashboardPage = ({ user, operations, getAllOperations }) => {
         </Grid>
         <Hidden mdDown>
           <Grid item lg={2}>
-            USER
+            <UserInfo
+              user={user.user}
+              transactions={transactions}
+              classes={classes}
+            />
           </Grid>
         </Hidden>
       </Grid>

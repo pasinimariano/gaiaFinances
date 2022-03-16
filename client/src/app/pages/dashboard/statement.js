@@ -3,10 +3,14 @@ import { useState } from 'react'
 export const Statements = () => {
   const [transactions, setTransactions] = useState({
     incomes: 0,
+    totalIncomes: 0,
     expenditures: 0,
+    totalExpenditures: 0,
     balance: 0
   })
   const [lastTransactions, setLastTransactions] = useState()
+  const [chartDataX, setChartDataX] = useState([0])
+  const [chartDataY, setChartDataY] = useState([0])
 
   const intToString = value => {
     if (value > 999 && value < 1000000) return (value / 1000).toFixed(1) + 'K'
@@ -20,11 +24,12 @@ export const Statements = () => {
       operation => operation.status === 'Income'
     )
     if (incomes.length > 0) {
+      const count = incomes.length
       const total = incomes
         .map(income => income.amount)
         .reduce((prev, curr) => prev + curr)
 
-      return total
+      return { total, count }
     }
     return 0
   }
@@ -35,11 +40,12 @@ export const Statements = () => {
     )
 
     if (expenditures.length > 0) {
+      const count = expenditures.length
       const total = expenditures
         .map(expenditure => expenditure.amount)
         .reduce((prev, curr) => prev + curr)
 
-      return total
+      return { total, count }
     }
     return 0
   }
@@ -58,6 +64,25 @@ export const Statements = () => {
     setLastTransactions(lastest)
   }
 
+  const getChartData = operations => {
+    const order = operations.sort((a, b) => new Date(a.date) - new Date(b.date))
+
+    order.forEach(operation => {
+      setChartDataX(chartDataX => [...chartDataX, operation.date.slice(0, 10)])
+      if (operation.status === 'Expenditure') {
+        setChartDataY(chartDataY => [
+          ...chartDataY,
+          chartDataY[chartDataY.length - 1] - operation.amount
+        ])
+      } else {
+        setChartDataY(chartDataY => [
+          ...chartDataY,
+          chartDataY[chartDataY.length - 1] + operation.amount
+        ])
+      }
+    })
+  }
+
   return {
     transactions,
     setTransactions,
@@ -66,6 +91,9 @@ export const Statements = () => {
     getBalance,
     intToString,
     lastTransactions,
-    getLastTransactions
+    getLastTransactions,
+    getChartData,
+    chartDataX,
+    chartDataY
   }
 }
