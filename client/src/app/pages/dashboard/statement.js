@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import axios from 'axios'
 
 export const Statements = () => {
   const [transactions, setTransactions] = useState({
@@ -11,6 +12,8 @@ export const Statements = () => {
   const [lastTransactions, setLastTransactions] = useState()
   const [chartDataX, setChartDataX] = useState([0])
   const [chartDataY, setChartDataY] = useState([0])
+  const [roudedChartData, setRoundedChartData] = useState({})
+  const [categories, setCategories] = useState()
 
   const intToString = value => {
     if (value > 999 && value < 1000000) return (value / 1000).toFixed(1) + 'K'
@@ -64,11 +67,17 @@ export const Statements = () => {
     setLastTransactions(lastest)
   }
 
+  const getAllCategories = async () => {
+    const response = await axios.get('http://localhost:3001/categories/all')
+
+    setCategories(response.data.categories)
+  }
+
   const getChartData = operations => {
     const order = operations.sort((a, b) => new Date(a.date) - new Date(b.date))
-
     order.forEach(operation => {
       setChartDataX(chartDataX => [...chartDataX, operation.date.slice(0, 10)])
+
       if (operation.status === 'Expenditure') {
         setChartDataY(chartDataY => [
           ...chartDataY,
@@ -83,6 +92,19 @@ export const Statements = () => {
     })
   }
 
+  const getRoundedChartData = operations => {
+    operations.forEach(operation => {
+      const category = categories.filter(
+        cat => cat._id === operation.CategoryId
+      )
+      const categoryName = category[0].name
+      setRoundedChartData(prevState => ({
+        ...prevState,
+        [categoryName]: (prevState[categoryName] || 0) + 1
+      }))
+    })
+  }
+
   return {
     transactions,
     setTransactions,
@@ -94,6 +116,10 @@ export const Statements = () => {
     getLastTransactions,
     getChartData,
     chartDataX,
-    chartDataY
+    chartDataY,
+    roudedChartData,
+    getAllCategories,
+    categories,
+    getRoundedChartData
   }
 }

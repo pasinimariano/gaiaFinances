@@ -3,8 +3,9 @@ import Paper from '@material-ui/core/Paper'
 import Avatar from '@material-ui/core/Avatar'
 import Typography from '@material-ui/core/Typography'
 import LinearProgress from '@material-ui/core/LinearProgress'
+import { RoundedChart } from './modules/roundedChart'
 
-export const UserInfo = ({ user, transactions, classes }) => {
+export const UserInfo = ({ user, transactions, roudedChartData, classes }) => {
   const [totalTransactions, setTotalTransactions] = useState()
 
   const getPercentage = total => {
@@ -47,6 +48,9 @@ export const UserInfo = ({ user, transactions, classes }) => {
         value={getPercentage(transactions.totalExpeditures)}
         className={classes.progressBar}
       />
+      <Paper elevation={0} className={classes.roundedChartContainer}>
+        <RoundedChart roudedChartData={roudedChartData} />
+      </Paper>
     </Paper>
   )
 }

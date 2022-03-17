@@ -12,7 +12,8 @@ export const Styles = makeStyles({
   dashboard: {
     width: '100vw',
     height: '100%',
-    marginBottom: '10px'
+    marginBottom: '10px',
+    marginTop: '20px'
   },
   allOperations: {
     backgroundColor: 'rgba(0,0,0,0)',
@@ -89,7 +90,7 @@ export const Styles = makeStyles({
   },
   userTable: {
     backgroundColor: '#F1E0AC',
-    height: '98%',
+    height: '97%',
     width: '95%'
   },
   userTableHeader: {
@@ -108,5 +109,12 @@ export const Styles = makeStyles({
     width: '80%',
     height: '3%',
     marginLeft: '10%'
+  },
+  roundedChartContainer: {
+    marginTop: '40px',
+    backgroundColor: 'rgba(0,0,0,0)',
+    height: '35%',
+    display: 'flex',
+    alignItems: 'center'
   }
 })

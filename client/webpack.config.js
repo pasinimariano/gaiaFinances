@@ -1,6 +1,5 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const StylelintPlugin = require('stylelint-webpack-plugin')
 
 const isProduction = process.env.NODE_ENV === 'production'
 const publicPath = process.env.PUBLIC_URL || '/'

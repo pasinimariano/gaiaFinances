@@ -6,12 +6,12 @@ import { Typography } from '@material-ui/core'
 import Hidden from '@material-ui/core/Hidden'
 
 import { mapStateToProps, mapDispatchToProps } from './reduxConnection'
+import { Statements } from './statement'
 import { InfoOperations } from '../../components/dashboard/infoOperations'
 import { LastOperations } from '../../components/dashboard/lastOperations'
-import { UserInfo } from '../../components/dashboard/userInfo'
-import { Statements } from './statement'
-import { Styles } from '../../styles/dashboardStyles'
 import { ChartOperations } from '../../components/dashboard/chartOperations'
+import { UserInfo } from '../../components/dashboard/userInfo'
+import { Styles } from '../../styles/dashboardStyles'
 
 const DashboardPage = ({ user, operations, getAllOperations }) => {
   const classes = Styles()
@@ -27,7 +27,11 @@ const DashboardPage = ({ user, operations, getAllOperations }) => {
     lastTransactions,
     getChartData,
     chartDataX,
-    chartDataY
+    chartDataY,
+    roudedChartData,
+    getAllCategories,
+    categories,
+    getRoundedChartData
   } = Statements()
 
   useEffect(() => {
@@ -49,17 +53,19 @@ const DashboardPage = ({ user, operations, getAllOperations }) => {
 
         getLastTransactions(operations.operations)
         getChartData(operations.operations)
+        getAllCategories()
       }
     }
 
     completeData()
   }, [])
 
+  useEffect(() => {
+    if (categories) getRoundedChartData(operations.operations)
+  }, [categories])
+
   return (
     <Grid container>
-      <Paper className={classes.logoContainer} elevation={0}>
-        LOGO
-      </Paper>
       <Grid container className={classes.dashboard}>
         <Grid item md={12} lg={10}>
           <Paper className={classes.allOperations} elevation={0}>
@@ -88,6 +94,7 @@ const DashboardPage = ({ user, operations, getAllOperations }) => {
               user={user.user}
               transactions={transactions}
               classes={classes}
+              roudedChartData={roudedChartData}
             />
           </Grid>
         </Hidden>
