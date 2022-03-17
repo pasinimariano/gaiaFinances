@@ -13,6 +13,7 @@ export const Statements = () => {
   const [chartDataX, setChartDataX] = useState([0])
   const [chartDataY, setChartDataY] = useState([0])
   const [roudedChartData, setRoundedChartData] = useState({})
+  const [radialChartData, setRadialChartData] = useState({})
   const [categories, setCategories] = useState()
 
   const intToString = value => {
@@ -105,6 +106,21 @@ export const Statements = () => {
     })
   }
 
+  const getRadialChartData = operations => {
+    operations.forEach(operation => {
+      if (operation.status === 'Expenditure') {
+        const category = categories.filter(
+          cat => cat._id === operation.CategoryId
+        )
+        const categoryName = category[0].name
+        setRadialChartData(prevState => ({
+          ...prevState,
+          [categoryName]: (prevState[categoryName] || 0) + operation.amount
+        }))
+      }
+    })
+  }
+
   return {
     transactions,
     setTransactions,
@@ -120,6 +136,8 @@ export const Statements = () => {
     roudedChartData,
     getAllCategories,
     categories,
-    getRoundedChartData
+    getRoundedChartData,
+    getRadialChartData,
+    radialChartData
   }
 }

@@ -31,7 +31,9 @@ const DashboardPage = ({ user, operations, getAllOperations }) => {
     roudedChartData,
     getAllCategories,
     categories,
-    getRoundedChartData
+    getRoundedChartData,
+    getRadialChartData,
+    radialChartData
   } = Statements()
 
   useEffect(() => {
@@ -61,7 +63,10 @@ const DashboardPage = ({ user, operations, getAllOperations }) => {
   }, [])
 
   useEffect(() => {
-    if (categories) getRoundedChartData(operations.operations)
+    if (categories) {
+      getRoundedChartData(operations.operations)
+      getRadialChartData(operations.operations)
+    }
   }, [categories])
 
   return (
@@ -95,6 +100,7 @@ const DashboardPage = ({ user, operations, getAllOperations }) => {
               transactions={transactions}
               classes={classes}
               roudedChartData={roudedChartData}
+              radialChartData={radialChartData}
             />
           </Grid>
         </Hidden>

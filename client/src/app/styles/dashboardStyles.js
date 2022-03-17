@@ -116,5 +116,12 @@ export const Styles = makeStyles({
     height: '35%',
     display: 'flex',
     alignItems: 'center'
+  },
+  radialChartContainer: {
+    marginTop: '40px',
+    backgroundColor: 'rgba(0,0,0,0)',
+    height: '25%',
+    display: 'flex',
+    alignItems: 'center'
   }
 })
