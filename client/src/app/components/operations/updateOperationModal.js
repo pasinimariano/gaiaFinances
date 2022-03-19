@@ -5,10 +5,10 @@ import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
-import { TextFields } from '../../components/home/components/textFields'
+import { TextFields } from '../home/components/textFields'
 import { FormsControl } from './modules/formControl'
 
-export const OperationModal = ({
+export const UpdateOperationModal = ({
   user,
   created,
   updateOperation,

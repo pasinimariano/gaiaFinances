@@ -13,13 +13,13 @@ import {
 import { Pagination } from './modules/pagination'
 
 export const OperationsTable = ({
-  userOperations,
   paginationState,
+  handleOpen,
   nextPage,
   prevPage,
+  userOperations,
   indexFirstOperation,
   indexLastOperation,
-  handleOpen,
   classes
 }) => {
   const headers = [
@@ -51,7 +51,7 @@ export const OperationsTable = ({
               <TableRow
                 key={transaction._id}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                onClick={() => handleOpen(transaction)}
+                onClick={() => handleOpen('update', transaction)}
               >
                 <TableCell align='left'>{transaction._id}</TableCell>
                 <TableCell align='left'>{transaction.description}</TableCell>
@@ -62,15 +62,15 @@ export const OperationsTable = ({
               </TableRow>
             ))}
         </TableBody>
-        <Pagination
-          nextPage={nextPage}
-          prevPage={prevPage}
-          userOperations={userOperations}
-          indexFirstOperation={indexFirstOperation}
-          indexLastOperation={indexLastOperation}
-          classes={classes}
-        />
       </Table>
+      <Pagination
+        nextPage={nextPage}
+        prevPage={prevPage}
+        userOperations={userOperations}
+        indexFirstOperation={indexFirstOperation}
+        indexLastOperation={indexLastOperation}
+        classes={classes}
+      />
     </TableContainer>
   )
 }

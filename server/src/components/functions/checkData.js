@@ -41,4 +41,30 @@ const checkData = data => {
   return check
 }
 
-module.exports = checkData
+const checkPostData = data => {
+  const check = {
+    category: '',
+    description: '',
+    amount: '',
+    status: '',
+    date: ''
+  }
+
+  !data.category
+    ? (check.category = 'No category received')
+    : (check.category = 'OK')
+
+  !data.description
+    ? (check.description = 'No description received')
+    : (check.description = 'OK')
+
+  !data.amount ? (check.amount = 'No amount received') : (check.amount = 'OK')
+
+  !data.status ? (check.status = 'No status received') : (check.status = 'Ok')
+
+  !data.date ? (check.date = 'No date received') : (check.date = 'OK')
+
+  return check
+}
+
+module.exports = { checkData, checkPostData }

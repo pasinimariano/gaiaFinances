@@ -1,28 +1,25 @@
 import { makeStyles } from '@material-ui/core'
 
 export const Styles = makeStyles({
-  userContainer: {
-    height: '6vh',
-    width: '100vw',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'rgba(0,0,0,0)'
+  mainContainer: {
+    height: '93vh',
+    marginTop: '5px'
   },
   tableContainer: {
     background: 'rgba(0,0,0,0)',
     width: '100%',
     height: '88vh',
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center'
   },
   table: {
-    width: '90%',
+    width: '95%',
     height: '80%',
     backgroundColor: '#F1E0AC',
     display: 'flex',
-    justifyContent: 'center'
+    flexDirection: 'column'
   },
   tableHeaders: {
     backgroundColor: '#203239'
@@ -32,12 +29,17 @@ export const Styles = makeStyles({
     fontWeight: 'bolder'
   },
   tableBody: {
-    height: '83%'
+    height: '58vh'
   },
   paginationContainer: {
-    width: '150%',
-    marginTop: '15px',
-    marginLeft: '100%'
+    backgroundColor: 'rgba(0,0,0,0)',
+    width: '100%',
+    height: '10vh',
+    display: 'flex',
+    justifyContent: 'center'
+  },
+  paginationGrid: {
+    width: '50%'
   },
   gridCount: {
     display: 'flex',
@@ -53,30 +55,19 @@ export const Styles = makeStyles({
     justifyContent: 'space-around'
   },
   controlsContainer: {
-    height: '100%',
-    backgroundColor: 'rgba(0,0,0,0)',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  controls: {
-    height: '100%',
-    width: '80%',
+    height: '8%',
+    width: '95%',
     backgroundColor: '#F1E0AC',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    flexDirection: 'column',
-    marginBottom: '25px'
+    flexDirection: 'row',
+    marginBottom: '40px'
   },
-  order: {
-    marginTop: '10px',
-    width: '80%',
-    height: '20%',
+  orderBox: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0)'
+    alignItems: 'center'
   },
   orderHeader: {
     backgroundColor: '#203239',
@@ -128,13 +119,61 @@ export const Styles = makeStyles({
     display: 'flex',
     flexDirection: 'column'
   },
-  created: {
-    color: '#B8405E',
-    fontWeight: 'bolder'
-  },
   modalContainer: {
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
+    width: '100%'
+  },
+  newOperationBodyContainer: {
+    height: '85%'
+  },
+  newOperation: {
+    backgroundColor: '#F1E0AC',
+    height: '60%',
+    width: '450px',
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  newOperationContainer: {
+    marginTop: '25px',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
+  newOperationTop: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center'
+  },
+  formsControlContainer: {
+    width: '100%',
+    marginTop: '25px'
+  },
+  descriptionContainer: {
+    width: '100%',
+    marginTop: '25px',
+    height: '12vh',
+    display: 'flex',
+    justifyContent: 'center'
+  },
+  buttonPostContainer: {
+    backgroundColor: 'rgba(0,0,0,0)',
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center'
+  },
+  buttonPost: {
+    backgroundColor: '#203239',
+    color: '#B8405E',
+    fontWeight: 'bolder',
+    width: '30%',
+    textAlign: 'center'
+  },
+  errors: {
+    color: 'red',
+    display: 'flex',
     justifyContent: 'center'
   },
   paper: {

@@ -1,7 +1,5 @@
 import React from 'react'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
+import { Grid, Typography, Button, Paper } from '@material-ui/core'
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
 import ArrowForwardIos from '@material-ui/icons/ArrowForwardIos'
 
@@ -14,21 +12,26 @@ export const Pagination = ({
   classes
 }) => {
   return (
-    <Grid container className={classes.paginationContainer}>
-      <Grid item xs={12} lg={6} className={classes.gridCount}>
-        <Typography className={classes.count}>
-          {indexFirstOperation + 1} - {indexLastOperation} of
-          {userOperations.length}
-        </Typography>
+    <Paper elevation={0} className={classes.paginationContainer}>
+      <Grid container className={classes.paginationGrid}>
+        <Grid item xs={12} lg={6} className={classes.gridCount}>
+          <Typography className={classes.count}>
+            {`${indexFirstOperation + 1}  -  ${
+              indexLastOperation > userOperations.length
+                ? userOperations.length
+                : indexLastOperation
+            }  of ${userOperations.length}`}
+          </Typography>
+        </Grid>
+        <Grid item xs={12} lg={6} className={classes.pagination}>
+          <Button onClick={prevPage} variant='outlined'>
+            <ArrowBackIosIcon />
+          </Button>
+          <Button onClick={nextPage} variant='outlined'>
+            <ArrowForwardIos />
+          </Button>
+        </Grid>
       </Grid>
-      <Grid item xs={12} lg={6} className={classes.pagination}>
-        <Button onClick={prevPage} variant='outlined'>
-          <ArrowBackIosIcon />
-        </Button>
-        <Button onClick={nextPage} variant='outlined'>
-          <ArrowForwardIos />
-        </Button>
-      </Grid>
-    </Grid>
+    </Paper>
   )
 }

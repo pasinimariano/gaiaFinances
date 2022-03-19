@@ -1,9 +1,10 @@
-const checkData = require('../functions/checkData')
+const validator = require('../functions/checkData')
 const passwordEncrypter = require('../functions/passwordEncrypter')
 const tokenGenerator = require('../functions/tokenGenerator')
 const validPassword = require('../functions/checkPassword')
 const store = require('./store')
 
+const { checkData } = validator
 const { hashPassword, checkHashedPassword } = passwordEncrypter
 const { createAccessToken, authenticateToken } = tokenGenerator
 const { createUser, searchUserByEmail, updateUser, deleteUser } = store

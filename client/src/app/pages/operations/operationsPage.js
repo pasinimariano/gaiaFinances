@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
+import { Grid } from '@material-ui/core'
 
 import { mapStateToProps, mapDispatchToProps } from './reduxConnection'
 import { Statemets } from './statement'
 import { OperationsTable } from '../../components/operations/operationsTable'
 import { Controls } from '../../components/operations/controls'
+import { UpdateOperationModal } from '../../components/operations/updateOperationModal'
+import { NewOperationModal } from '../../components/operations/newOperationModal'
 import { Styles } from '../../styles/operationsStyles'
-import { OperationModal } from '../../components/operations/operationModal'
-import { Hidden } from '@material-ui/core'
 
 const OperationsPage = ({
   user,
@@ -30,10 +29,10 @@ const OperationsPage = ({
     selection,
     setSelection,
     newOperation,
+    errors,
     setNewOperation,
     postOperation,
     handleChange,
-    getAllCategories,
     created,
     updateOperation,
     modalState,
@@ -69,13 +68,13 @@ const OperationsPage = ({
   }, [created])
 
   return (
-    <Grid container>
-      <Hidden mdDown>
-        <Paper className={classes.userContainer} elevation={0}>
-          USER INFO
-        </Paper>
-      </Hidden>
-      <Grid item xs={12} md={12} lg={8} className={classes.tableContainer}>
+    <Grid container className={classes.mainContainer}>
+      <Grid item lg={12} className={classes.tableContainer}>
+        <Controls
+          setSelection={setSelection}
+          handleOpen={handleOpen}
+          classes={classes}
+        />
         <OperationsTable
           userOperations={filteredOperations}
           paginationState={paginationState}
@@ -87,21 +86,8 @@ const OperationsPage = ({
           classes={classes}
         />
       </Grid>
-      <Grid item xs={12} md={12} lg={4}>
-        <Controls
-          setSelection={setSelection}
-          postOperation={postOperation}
-          newOperation={newOperation}
-          handleChange={handleChange}
-          getAllCategories={getAllCategories}
-          categories={categories}
-          status={status}
-          created={created}
-          classes={classes}
-        />
-      </Grid>
-      {modalState.isOpen ? (
-        <OperationModal
+      {modalState.isOpen && modalState.selected === 'update' ? (
+        <UpdateOperationModal
           user={user}
           created={created}
           handleChange={handleChange}
@@ -113,6 +99,18 @@ const OperationsPage = ({
           status={status}
           updateOperation={updateOperation}
           deleteOperation={deleteOperation}
+          classes={classes}
+        />
+      ) : modalState.isOpen && modalState.selected === 'newOperation' ? (
+        <NewOperationModal
+          handleChange={handleChange}
+          modalState={modalState}
+          handleClose={handleClose}
+          newOperation={newOperation}
+          postOperation={postOperation}
+          categories={categories}
+          status={status}
+          errors={errors}
           classes={classes}
         />
       ) : null}

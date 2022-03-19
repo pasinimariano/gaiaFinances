@@ -1,14 +1,13 @@
 import React from 'react'
-import Paper from '@material-ui/core/Paper'
-import Button from '@material-ui/core/Button'
-import Typography from '@material-ui/core/Typography'
+import { Paper, Button, Typography, Grid } from '@material-ui/core'
+
 import DialpadIcon from '@material-ui/icons/Dialpad'
 import KeyboardArrowUpOutlinedIcon from '@material-ui/icons/KeyboardArrowUpOutlined'
 import KeyboardArrowDownOutlinedIcon from '@material-ui/icons/KeyboardArrowDownOutlined'
 
 export const FilterByStatus = ({ setSelection, classes }) => {
   return (
-    <Paper className={classes.order}>
+    <Grid item lg={4} className={classes.orderBox}>
       <Typography className={classes.orderHeader}>
         FILTRAR POR ESTADO
       </Typography>
@@ -32,6 +31,6 @@ export const FilterByStatus = ({ setSelection, classes }) => {
           <KeyboardArrowDownOutlinedIcon />
         </Button>
       </Paper>
-    </Paper>
+    </Grid>
   )
 }

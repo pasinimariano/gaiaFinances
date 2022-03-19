@@ -1,7 +1,9 @@
 const express = require('express')
 
 const controller = require('./controller')
+const checkData = require('../functions/checkData')
 
+const { checkPostData } = checkData
 const router = express.Router()
 
 const {
@@ -23,24 +25,31 @@ router.post('/create', async (req, res) => {
   const { userId } = req.body
   const { token } = req.query
 
-  const response = await operationPost(userId, token)
+  const isValid = currentValue => currentValue === 'OK'
 
-  /*
-  response.hasOwnProperty('missing')
-    ? res.status(401).json(response)
-    : response.hasOwnProperty('missingUser')
-    ? res.status(400).json(response)
-    : response.hasOwnProperty('invalidUser')
-    ? res.status(400).json(response)
-    : response.hasOwnProperty('invalidCategory')
-    ? res.status(400).json(response)
-    : response.hasOwnProperty('invalidStatus')
-    ? res.status(400).json(response)
-    : response.hasOwnProperty('error')
-    ? res.status(403).json(response)
-    : res.json(response)
-  */
-  res.json(response)
+  const validData = checkPostData(userId)
+
+  if (!Object.values(validData).every(isValid)) res.json({ errors: validData })
+  else {
+    const response = await operationPost(userId, token)
+
+    /*
+    response.hasOwnProperty('missing')
+      ? res.status(401).json(response)
+      : response.hasOwnProperty('missingUser')
+      ? res.status(400).json(response)
+      : response.hasOwnProperty('invalidUser')
+      ? res.status(400).json(response)
+      : response.hasOwnProperty('invalidCategory')
+      ? res.status(400).json(response)
+      : response.hasOwnProperty('invalidStatus')
+      ? res.status(400).json(response)
+      : response.hasOwnProperty('error')
+      ? res.status(403).json(response)
+      : res.json(response)
+    */
+    res.json(response)
+  }
 })
 
 router.put('/update', async (req, res) => {

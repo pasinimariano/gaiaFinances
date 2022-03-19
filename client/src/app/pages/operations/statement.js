@@ -2,6 +2,8 @@ import { useState } from 'react'
 import axios from 'axios'
 
 export const Statemets = user => {
+  ////////////////////////////////////////////////// COMPONENT STATES
+
   const [newOperation, setNewOperation] = useState({
     userId: user.user._id,
     description: '',
@@ -9,6 +11,14 @@ export const Statemets = user => {
     amount: '',
     date: '',
     status: 'Income'
+  })
+  const [errors, setErrors] = useState({
+    amount: '',
+    category: '',
+    date: '',
+    description: '',
+    status: '',
+    other: ''
   })
   const [created, setCreated] = useState()
 
@@ -19,14 +29,18 @@ export const Statemets = user => {
 
   const [modalState, setModalState] = useState({
     isOpen: false,
+    selected: '',
     data: {}
   })
 
   const [categories, setCategories] = useState()
+
   const status = [
     { _id: 'Income', name: 'Income' },
     { _id: 'Expenditure', name: 'Expenditure' }
   ]
+
+  ////////////////////////////////////////////////// MANAGMENT FOR PAGINATION
 
   const nextPage = operation => {
     if (indexLastOperation < operation.length) {
@@ -41,6 +55,31 @@ export const Statemets = user => {
       setindexLastOperation(indexLastOperation - operationsXpage)
     }
   }
+
+  ////////////////////////////////////////////////// MANAGMENT FOR INPUTS
+
+  const handleChange = event => {
+    const { name, value } = event.target
+    setNewOperation({
+      ...newOperation,
+      [name]: value
+    })
+  }
+
+  ////////////////////////////////////////////////// MANAGMENT FOR CATEGORIES
+
+  const getAllCategories = async () => {
+    const response = await axios.get('http://localhost:3001/categories/all')
+
+    return response.data.categories
+  }
+
+  const getCategories = async () => {
+    const cats = await getAllCategories()
+    setCategories(cats)
+  }
+
+  /////////////////////////////////////////////////// MANAGMENT FOR OPERATIONS
 
   const postOperation = async (
     userId,
@@ -67,23 +106,31 @@ export const Statemets = user => {
         date: '',
         status: 'Income'
       })
+      setErrors({
+        amount: '',
+        category: '',
+        date: '',
+        description: '',
+        status: '',
+        other: ''
+      })
+    } else if (response.data && response.data.errors) {
+      setErrors(prevState => ({
+        ...prevState,
+        amount: response.data.errors.amount,
+        category: response.data.errors.category,
+        date: response.data.errors.date,
+        description: response.data.errors.description,
+        status: response.data.errors.status
+      }))
+    } else {
+      setErrors(prevState => ({
+        ...prevState,
+        other: response.data.error
+      }))
     }
 
     return response.data
-  }
-
-  const handleChange = event => {
-    const { name, value } = event.target
-    setNewOperation({
-      ...newOperation,
-      [name]: value
-    })
-  }
-
-  const getAllCategories = async () => {
-    const response = await axios.get('http://localhost:3001/categories/all')
-
-    return response.data.categories
   }
 
   const updateOperation = async (
@@ -107,9 +154,23 @@ export const Statemets = user => {
     }
   }
 
-  const handleOpen = operation => {
+  const deleteOperation = async _id => {
+    const response = await axios.delete(
+      `http://localhost:3001/operation/delete?token=${user.token}`,
+      { data: { _id } }
+    )
+
+    if (response.data.message && response.data.message === 'Success') {
+      setCreated('Borrada')
+    }
+  }
+
+  ////////////////////////////////////////////////// MANAGMENT FOR MODAL
+
+  const handleOpen = (selection, operation = null) => {
     setModalState({
       isOpen: true,
+      selected: selection,
       data: operation
     })
     setCreated('')
@@ -118,6 +179,7 @@ export const Statemets = user => {
   const handleClose = () => {
     setModalState({
       isOpen: false,
+      selected: '',
       data: {}
     })
     setNewOperation({
@@ -128,22 +190,6 @@ export const Statemets = user => {
       date: '',
       status: 'Income'
     })
-  }
-
-  const getCategories = async () => {
-    const cats = await getAllCategories()
-    setCategories(cats)
-  }
-
-  const deleteOperation = async _id => {
-    const response = await axios.delete(
-      `http://localhost:3001/operation/delete?token=${user.token}`,
-      { data: { _id } }
-    )
-
-    if (response.data.message && response.data.message === 'Success') {
-      setCreated('Borrada')
-    }
   }
 
   return {
@@ -158,9 +204,9 @@ export const Statemets = user => {
     setSelection,
     postOperation,
     newOperation,
+    errors,
     setNewOperation,
     handleChange,
-    getAllCategories,
     created,
     updateOperation,
     modalState,
