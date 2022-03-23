@@ -151,6 +151,28 @@ export const Statemets = user => {
     if (response.data && response.data.message === 'Successfully updated') {
       setCreated('Operacion registrada')
       setModalState({ ...modalState, isOpen: false })
+      setErrors({
+        amount: '',
+        category: '',
+        date: '',
+        description: '',
+        status: '',
+        other: ''
+      })
+    } else if (response.data && response.data.errors) {
+      setErrors(prevState => ({
+        ...prevState,
+        amount: response.data.errors.amount,
+        category: response.data.errors.category,
+        date: response.data.errors.date,
+        description: response.data.errors.description,
+        status: response.data.errors.status
+      }))
+    } else {
+      setErrors(prevState => ({
+        ...prevState,
+        other: response.data.error
+      }))
     }
   }
 

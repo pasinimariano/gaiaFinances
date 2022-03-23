@@ -56,9 +56,16 @@ router.put('/update', async (req, res) => {
   const body = req.body
   const { token } = req.query
 
-  const response = await operationPut(body, token)
+  const isValid = currentValue => currentValue === 'OK'
 
-  res.json(response)
+  const validData = checkPostData(body)
+
+  if (!Object.values(validData).every(isValid)) res.json({ errors: validData })
+  else {
+    const response = await operationPut(body, token)
+
+    res.json(response)
+  }
 })
 
 router.delete('/delete', async (req, res) => {

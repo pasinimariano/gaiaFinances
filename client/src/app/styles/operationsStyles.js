@@ -112,13 +112,6 @@ export const Styles = makeStyles({
     height: '80%',
     backgroundColor: '#B8405E'
   },
-  postContainer: {
-    backgroundColor: 'rgba(0,0,0,0)',
-    width: '80%',
-    marginTop: '20px',
-    display: 'flex',
-    flexDirection: 'column'
-  },
   modalContainer: {
     display: 'flex',
     alignItems: 'center',
@@ -176,21 +169,6 @@ export const Styles = makeStyles({
     display: 'flex',
     justifyContent: 'center'
   },
-  paper: {
-    backgroundColor: '#F1E0AC',
-    border: '2px solid #000',
-    height: '50vh',
-    width: '50wv',
-    display: 'flex',
-    flexDirection: 'column'
-  },
-  amountDate: {
-    marginTop: '25px',
-    display: 'flex',
-    justifyContent: 'space-around',
-    flexDirection: 'row',
-    backgroundColor: 'rgba(0,0,0,0)'
-  },
   description: {
     backgroundColor: 'rgba(0,0,0,0)',
     marginTop: '25px',
@@ -198,5 +176,12 @@ export const Styles = makeStyles({
   },
   deleteButton: {
     width: '10%'
+  },
+  acceptButton: {
+    color: 'grey',
+    '&:hover': {
+      color: '#B8405E',
+      fontWeight: 'bolder'
+    }
   }
 })

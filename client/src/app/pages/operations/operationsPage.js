@@ -4,10 +4,12 @@ import { Grid } from '@material-ui/core'
 
 import { mapStateToProps, mapDispatchToProps } from './reduxConnection'
 import { Statemets } from './statement'
+
 import { OperationsTable } from '../../components/operations/operationsTable'
 import { Controls } from '../../components/operations/controls'
 import { UpdateOperationModal } from '../../components/operations/updateOperationModal'
 import { NewOperationModal } from '../../components/operations/newOperationModal'
+
 import { Styles } from '../../styles/operationsStyles'
 
 const OperationsPage = ({
@@ -99,6 +101,7 @@ const OperationsPage = ({
           status={status}
           updateOperation={updateOperation}
           deleteOperation={deleteOperation}
+          errors={errors}
           classes={classes}
         />
       ) : modalState.isOpen && modalState.selected === 'newOperation' ? (
@@ -113,7 +116,8 @@ const OperationsPage = ({
           errors={errors}
           classes={classes}
         />
-      ) : null}
+      ) : modalState.isOpen &&
+        modalState.selected === 'newCategory' ? null : null}
     </Grid>
   )
 }
