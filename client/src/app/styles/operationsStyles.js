@@ -119,15 +119,15 @@ export const Styles = makeStyles({
     height: '100%',
     width: '100%'
   },
-  newOperationBodyContainer: {
-    height: '85%'
-  },
-  newOperation: {
+  modalPaper: {
     backgroundColor: '#F1E0AC',
     height: '60%',
     width: '450px',
     display: 'flex',
     flexDirection: 'column'
+  },
+  newOperationBodyContainer: {
+    height: '85%'
   },
   newOperationContainer: {
     marginTop: '25px',
@@ -161,7 +161,6 @@ export const Styles = makeStyles({
     backgroundColor: '#203239',
     color: '#B8405E',
     fontWeight: 'bolder',
-    width: '30%',
     textAlign: 'center'
   },
   errors: {
@@ -183,5 +182,48 @@ export const Styles = makeStyles({
       color: '#B8405E',
       fontWeight: 'bolder'
     }
+  },
+  categoriesPaper: {
+    backgroundColor: 'rgba(0,0,0,0)',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    marginTop: '15px',
+    height: '60%'
+  },
+  categoryContainer: {
+    backgroundColor: '#B8405E',
+    width: '30%',
+    height: '30px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: '5px',
+    '&:hover': {
+      color: '#F1E0AC',
+      fontWeight: 'bold'
+    }
+  },
+  flexCenter: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  categoryName: {
+    color: '#B8405E',
+    marginBottom: '10px'
+  },
+  categoriesControls: {
+    backgroundColor: 'rgba(0,0,0,0)',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '40%'
+  },
+  successMessage: {
+    backgroundColor: 'rgba(0,0,0,0)',
+    textAlign: 'center',
+    color: '#B8405E'
   }
 })

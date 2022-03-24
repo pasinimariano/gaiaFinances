@@ -42,7 +42,6 @@ export const UpdateOperationModal = ({
     deleteOperation(modalState.data._id)
     handleClose()
   }
-  console.log(handleClose)
 
   useEffect(() => {
     setNewOperation({
@@ -67,7 +66,7 @@ export const UpdateOperationModal = ({
       onClose={handleClose}
       className={classes.modalContainer}
     >
-      <Paper className={classes.newOperation}>
+      <Paper className={classes.modalPaper}>
         <Paper elevation={0} className={classes.orderHeader}>
           <Typography className={classes.header}>
             ID -- {modalState.data._id} --

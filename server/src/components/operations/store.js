@@ -84,7 +84,6 @@ const updateOperation = async newData => {
         where: { _id }
       }
     )
-    console.log(updateOperation)
 
     return { message: 'Successfully updated' }
   } catch (error) {

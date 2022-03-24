@@ -3,17 +3,18 @@ const Db = require('../db/index')
 const { Categories } = Db.CONNECTION.models
 
 const defaultCategories = [
-  'Casa',
-  'Impuestos',
-  'Vehiculo',
-  'Seguro',
-  'Telefono',
-  'Servicios',
-  'Salud',
-  'Compras',
-  'Viajes',
-  'Ocio',
-  'Otros'
+  'CASA',
+  'IMPUESTOS',
+  'VEHICULO',
+  'SEGURO',
+  'TELEFONO',
+  'SERVICIOS',
+  'SALUD',
+  'COMPRAS',
+  'VIAJES',
+  'OCIO',
+  'SUELDO',
+  'OTROS'
 ]
 
 const createCategories = async () => {

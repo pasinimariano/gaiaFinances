@@ -15,7 +15,11 @@ export const Controls = ({ setSelection, handleOpen, classes }) => {
         classes={classes}
         onClick={() => handleOpen('newOperation')}
       />
-      <CreationControl header='CREAR CATEGORIA' classes={classes} />
+      <CreationControl
+        header='CONTROL CATEGORIAS'
+        onClick={() => handleOpen('newCategory')}
+        classes={classes}
+      />
     </Grid>
   )
 }

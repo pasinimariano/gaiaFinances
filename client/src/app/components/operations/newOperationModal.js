@@ -34,7 +34,7 @@ export const NewOperationModal = ({
       onClose={handleClose}
       className={classes.modalContainer}
     >
-      <Paper className={classes.newOperation}>
+      <Paper className={classes.modalPaper}>
         <Typography className={classes.orderHeader}>
           CREA UNA NUEVA OPERACION
         </Typography>

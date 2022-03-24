@@ -79,6 +79,62 @@ export const Statemets = user => {
     setCategories(cats)
   }
 
+  const createCategory = async name => {
+    const response = await axios.post(
+      'http://localhost:3001/categories/create',
+      { name }
+    )
+
+    if (response.data && response.data.message === `Category ${name} created`) {
+      await getCategories()
+      setCreated('Categoria creada')
+    } else if (
+      response.data &&
+      response.data.errorcat === 'Category already exist'
+    ) {
+      setCreated('La categoria ya existe')
+    }
+
+    return response.data
+  }
+
+  const updateCategory = async (name, _id) => {
+    if (!name) {
+      setCreated('Selecciona una categoria')
+    } else {
+      const params = { name, _id }
+      const response = await axios.put(
+        `http://localhost:3001/categories/update`,
+        params
+      )
+
+      if (response.data && response.data.message === 'Successfully updated') {
+        await getCategories()
+        setCreated('Categoria actualizada')
+      }
+
+      return response.data
+    }
+  }
+
+  const deleteCategory = async (_id, name) => {
+    if (!name) {
+      setCreated('Selecciona una categoria')
+    } else {
+      const response = await axios.delete(
+        `http://localhost:3001/categories/delete`,
+        { data: { _id, name } }
+      )
+      if (
+        response.data.message &&
+        response.data.message === `Category ${name} deleted`
+      ) {
+        await getCategories()
+        setCreated('Categoria eliminada exitosamente')
+      }
+    }
+  }
+
   /////////////////////////////////////////////////// MANAGMENT FOR OPERATIONS
 
   const postOperation = async (
@@ -224,19 +280,22 @@ export const Statemets = user => {
     operationsXpage,
     selection,
     setSelection,
-    postOperation,
     newOperation,
-    errors,
     setNewOperation,
-    handleChange,
+    errors,
     created,
-    updateOperation,
+    status,
+    handleChange,
     modalState,
     handleOpen,
     handleClose,
-    getCategories,
+    postOperation,
+    updateOperation,
+    deleteOperation,
     categories,
-    status,
-    deleteOperation
+    getCategories,
+    createCategory,
+    updateCategory,
+    deleteCategory
   }
 }

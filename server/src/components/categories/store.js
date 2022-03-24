@@ -19,17 +19,44 @@ const getCategory = async _id => {
 }
 
 const categoryPost = async name => {
-  return await Categories.create({ name })
-    .then(() => {
-      return { message: `Category ${name} created` }
-    })
-    .catch(error => {
-      return { error: error }
-    })
+  const searchCategory = await Categories.findOne({
+    where: { name: name.toUpperCase() }
+  })
+  if (searchCategory === null) {
+    return await Categories.create({ name: name.toUpperCase() })
+      .then(() => {
+        return { message: `Category ${name} created` }
+      })
+      .catch(error => {
+        return { error: error }
+      })
+  } else {
+    return { errorcat: 'Category already exist' }
+  }
 }
 
-const CategoryDelete = async name => {
-  return await Categories.destroy({ where: name })
+const categoryPut = async (name, _id) => {
+  const findCategory = await Categories.findByPk(_id)
+
+  if (findCategory === null) return { invalid: 'Category doest exist' }
+
+  try {
+    await Categories.update(
+      {
+        name
+      },
+      {
+        where: { _id }
+      }
+    )
+    return { message: 'Successfully updated' }
+  } catch (error) {
+    return { error: error }
+  }
+}
+
+const categoryDelete = async (_id, name) => {
+  return await Categories.destroy({ where: { _id } })
     .then(() => {
       return { message: `Category ${name} deleted` }
     })
@@ -42,5 +69,6 @@ module.exports = {
   getAllCategories,
   getCategory,
   categoryPost,
-  CategoryDelete
+  categoryPut,
+  categoryDelete
 }

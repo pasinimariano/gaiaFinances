@@ -11,6 +11,7 @@ import { UpdateOperationModal } from '../../components/operations/updateOperatio
 import { NewOperationModal } from '../../components/operations/newOperationModal'
 
 import { Styles } from '../../styles/operationsStyles'
+import { ManageCategoriesModal } from '../../components/operations/manageCategoryModal'
 
 const OperationsPage = ({
   user,
@@ -31,19 +32,22 @@ const OperationsPage = ({
     selection,
     setSelection,
     newOperation,
-    errors,
     setNewOperation,
-    postOperation,
     handleChange,
-    created,
-    updateOperation,
     modalState,
     handleOpen,
     handleClose,
-    getCategories,
-    categories,
+    status,
+    created,
+    errors,
+    postOperation,
+    updateOperation,
     deleteOperation,
-    status
+    categories,
+    getCategories,
+    createCategory,
+    updateCategory,
+    deleteCategory
   } = Statemets(user)
 
   useEffect(() => {
@@ -116,8 +120,18 @@ const OperationsPage = ({
           errors={errors}
           classes={classes}
         />
-      ) : modalState.isOpen &&
-        modalState.selected === 'newCategory' ? null : null}
+      ) : modalState.isOpen && modalState.selected === 'newCategory' ? (
+        <ManageCategoriesModal
+          categories={categories}
+          modalState={modalState}
+          handleClose={handleClose}
+          updateCategory={updateCategory}
+          createCategory={createCategory}
+          deleteCategory={deleteCategory}
+          created={created}
+          classes={classes}
+        />
+      ) : null}
     </Grid>
   )
 }
