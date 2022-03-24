@@ -55,7 +55,6 @@ export const Styles = makeStyles({
     justifyContent: 'space-around'
   },
   controlsContainer: {
-    height: '8%',
     width: '95%',
     backgroundColor: '#F1E0AC',
     display: 'flex',
@@ -67,7 +66,8 @@ export const Styles = makeStyles({
   orderBox: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: '10px'
   },
   orderHeader: {
     backgroundColor: '#203239',

@@ -7,7 +7,7 @@ import KeyboardArrowDownOutlinedIcon from '@material-ui/icons/KeyboardArrowDownO
 
 export const FilterByStatus = ({ setSelection, classes }) => {
   return (
-    <Grid item lg={4} className={classes.orderBox}>
+    <Grid item xs={12} sm={6} md={4} lg={4} className={classes.orderBox}>
       <Typography className={classes.orderHeader}>
         FILTRAR POR ESTADO
       </Typography>

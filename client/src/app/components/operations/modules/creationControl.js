@@ -4,7 +4,7 @@ import AddIcon from '@material-ui/icons/Add'
 
 export const CreationControl = ({ classes, header, onClick }) => {
   return (
-    <Grid item lg={2} className={classes.orderBox}>
+    <Grid item xs={6} md={2} className={classes.orderBox}>
       <Typography className={classes.orderHeader}>{header}</Typography>
       <Paper className={classes.orderButtons} elevation={0}>
         <Button className={classes.buttonAll} onClick={onClick}>

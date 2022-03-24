@@ -16,7 +16,7 @@ export const Controls = ({ setSelection, handleOpen, classes }) => {
         onClick={() => handleOpen('newOperation')}
       />
       <CreationControl
-        header='CONTROL CATEGORIAS'
+        header='CATEGORIAS'
         onClick={() => handleOpen('newCategory')}
         classes={classes}
       />
