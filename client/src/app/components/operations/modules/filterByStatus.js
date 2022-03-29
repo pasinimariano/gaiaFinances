@@ -1,9 +1,9 @@
 import React from 'react'
 import { Paper, Button, Typography, Grid } from '@material-ui/core'
 
-import DialpadIcon from '@material-ui/icons/Dialpad'
-import KeyboardArrowUpOutlinedIcon from '@material-ui/icons/KeyboardArrowUpOutlined'
-import KeyboardArrowDownOutlinedIcon from '@material-ui/icons/KeyboardArrowDownOutlined'
+import AppsIcon from '@material-ui/icons/Apps'
+import AddIcon from '@material-ui/icons/Add'
+import RemoveIcon from '@material-ui/icons/Remove'
 
 export const FilterByStatus = ({ setSelection, classes }) => {
   return (
@@ -16,19 +16,19 @@ export const FilterByStatus = ({ setSelection, classes }) => {
           className={classes.buttonAll}
           onClick={() => setSelection('all')}
         >
-          <DialpadIcon />
+          <AppsIcon />
         </Button>
         <Button
           className={classes.buttonIncomes}
           onClick={() => setSelection('onlyIncomes')}
         >
-          <KeyboardArrowUpOutlinedIcon />
+          <AddIcon />
         </Button>
         <Button
           className={classes.buttonExpenditures}
           onClick={() => setSelection('onlyExpenditures')}
         >
-          <KeyboardArrowDownOutlinedIcon />
+          <RemoveIcon />
         </Button>
       </Paper>
     </Grid>

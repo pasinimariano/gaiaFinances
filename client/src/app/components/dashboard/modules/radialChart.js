@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ReactApexChart from 'react-apexcharts'
 
 export const RadialChart = ({ radialChartData }) => {
-  const [series, setSeries] = useState({})
+  const [series, setSeries] = useState([])
   const [config, setConfig] = useState({
     labels: [],
     bar: {
@@ -34,7 +34,7 @@ export const RadialChart = ({ radialChartData }) => {
 
   return (
     <>
-      {!radialChartData ? null : (
+      {!series ? null : (
         <ReactApexChart options={config} series={series} type='pie' />
       )}
     </>

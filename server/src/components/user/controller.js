@@ -49,7 +49,12 @@ const loginUser = async data => {
     if (checkPassword) {
       const token = createAccessToken(user.email)
       const response = {
-        user,
+        user: {
+          _id: user._id,
+          email: user.email,
+          firstname: user.firstname,
+          lastname: user.lastname
+        },
         token
       }
       return response
@@ -66,15 +71,16 @@ const userPut = async (data, token) => {
 
   const checkPassword = await validPassword(
     searchUserByEmail,
-    data,
+    data.data,
     checkHashedPassword
   )
 
   if (checkPassword) {
     data.hasOwnProperty('newpassword')
-      ? (data['password'] = await hashPassword(data.newpassword))
-      : (data['password'] = await hashPassword(data.password))
+      ? (data.data['password'] = await hashPassword(data.data.newpassword))
+      : (data.data['password'] = await hashPassword(data.data.password))
     const response = await updateUser(data)
+
     return response
   }
 

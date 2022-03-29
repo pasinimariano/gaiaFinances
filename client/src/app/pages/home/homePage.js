@@ -9,13 +9,7 @@ import { CreateForm } from '../../components/home/createForm'
 import { LoginForm } from '../../components/home/loginForm'
 import { Styles } from '../../styles/homeStyles'
 
-const HomePage = ({
-  loginUser,
-  deleteUser,
-  isLogging,
-  userState,
-  logginState
-}) => {
+const HomePage = ({ loginUser, logOut, isLogging, userState, logginState }) => {
   const classes = Styles()
 
   const {
@@ -28,7 +22,7 @@ const HomePage = ({
   } = Statements()
 
   useEffect(() => {
-    deleteUser()
+    logOut()
   }, [])
 
   return (
@@ -50,7 +44,6 @@ const HomePage = ({
               formValues={formValues}
               handleChange={handleChange}
               loginUser={loginUser}
-              deleteUser={deleteUser}
               isLogging={isLogging}
               userState={userState}
               logginState={logginState}

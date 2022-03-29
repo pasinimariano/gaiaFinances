@@ -14,10 +14,22 @@ export const Styles = makeStyles({
     display: 'flex',
     justifyContent: 'center'
   },
+  mainRoutes: {
+    background: '#203239'
+  },
   selected: {
     color: '#B8405E'
   },
   noSelected: {
+    color: '#EEE6CE'
+  },
+  logOut: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'center'
+  },
+  logOutIcon: {
+    marginRight: '40px',
     color: '#EEE6CE'
   }
 })

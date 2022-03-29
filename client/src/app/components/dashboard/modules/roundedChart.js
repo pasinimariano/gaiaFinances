@@ -34,7 +34,7 @@ export const RoundedChart = ({ roudedChartData }) => {
 
   return (
     <>
-      {!roudedChartData ? null : (
+      {!series ? null : (
         <ReactApexChart options={config} series={series} type='pie' />
       )}
     </>

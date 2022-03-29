@@ -4,6 +4,7 @@ import { Route, Routes, Navigate } from 'react-router-dom'
 import HomePage from './pages/home/homePage'
 import DashboardPage from './pages/dashboard/dashboardPage'
 import OperationsPage from './pages/operations/operationsPage'
+import SettingsPage from './pages/settings/settingsPage'
 
 export const RoutesWeb = ({ isLoggin }) => {
   return (
@@ -20,6 +21,7 @@ export const RoutesWeb = ({ isLoggin }) => {
         path='/operations'
         element={!isLoggin ? <Navigate to='/' /> : <OperationsPage />}
       />
+      <Route exact path='/settings' element={<SettingsPage />} />
     </Routes>
   )
 }

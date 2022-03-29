@@ -42,7 +42,6 @@ router.put('/update', async (req, res) => {
   const { token } = req.query
 
   const response = await userPut(body, token)
-
   /*
   response.hasOwnProperty('missing')
     ? res.status(401).json(response)
@@ -54,6 +53,7 @@ router.put('/update', async (req, res) => {
     ? res.status(406).json(response)
     : res.json(response)
   */
+
   res.json(response)
 })
 

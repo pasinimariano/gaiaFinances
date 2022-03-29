@@ -33,12 +33,28 @@ const searchUserByEmail = user => {
 }
 
 const updateUser = newData => {
-  newData['email'] = newData.email.toLowerCase()
-  return Users.update(newData, { where: { _id: newData._id } })
-    .then(async () => {
-      const userUpdated = await searchUserByEmail(newData)
+  const { _id, email, firstname, lastname, password } = newData.data
 
-      return { message: 'Success', userUpdated }
+  return Users.update(
+    {
+      email: email.toLowerCase(),
+      firstname,
+      lastname,
+      password
+    },
+    { where: { _id: _id } }
+  )
+    .then(async () => {
+      const userUpdated = await searchUserByEmail(newData.data)
+
+      const formatedData = {
+        _id: userUpdated._id,
+        email: userUpdated.email,
+        firstname: userUpdated.firstname,
+        lastname: userUpdated.lastname
+      }
+
+      return { message: 'Success', formatedData }
     })
     .catch(error => {
       return { error: error }

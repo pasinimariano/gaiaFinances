@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
-import { Typography } from '@material-ui/core'
-import Hidden from '@material-ui/core/Hidden'
+import {
+  Grid,
+  Paper,
+  Typography,
+  Hidden,
+  CircularProgress
+} from '@material-ui/core/'
 
 import { mapStateToProps, mapDispatchToProps } from './reduxConnection'
 import { Statements } from './statement'
@@ -22,45 +25,43 @@ const DashboardPage = ({ user, operations, getAllOperations }) => {
     getIncomes,
     getExpenditures,
     getBalance,
-    intToString,
     getLastTransactions,
+    intToString,
     lastTransactions,
+    categories,
+    getAllCategories,
     getChartData,
     chartDataX,
     chartDataY,
     roudedChartData,
-    getAllCategories,
-    categories,
     getRoundedChartData,
-    getRadialChartData,
-    radialChartData
+    radialChartData,
+    getRadialChartData
   } = Statements()
 
   useEffect(() => {
-    const completeData = async () => {
-      await getAllOperations(user.user['_id'], user.token)
-
-      if (operations.operations.length > 0) {
-        const incomes = await getIncomes(operations)
-        const expenditures = await getExpenditures(operations)
-        const balance = getBalance(incomes.total, expenditures.total)
-
-        setTransactions({
-          incomes: intToString(incomes.total),
-          totalIncomes: intToString(incomes.count),
-          expenditures: intToString(expenditures.total),
-          totalExpeditures: intToString(expenditures.count),
-          balance
-        })
-
-        getLastTransactions(operations.operations)
-        getChartData(operations.operations)
-        getAllCategories()
-      }
-    }
-
-    completeData()
+    getAllOperations(user.user['_id'], user.token)
   }, [])
+
+  useEffect(() => {
+    if (operations.operations) {
+      const incomes = getIncomes(operations)
+      const expenditures = getExpenditures(operations)
+      const balance = getBalance(incomes.total, expenditures.total)
+
+      setTransactions({
+        incomes: intToString(incomes.total),
+        totalIncomes: intToString(incomes.count),
+        expenditures: intToString(expenditures.total),
+        totalExpeditures: intToString(expenditures.count),
+        balance
+      })
+
+      getLastTransactions(operations.operations)
+      getChartData(operations.operations)
+      getAllCategories()
+    }
+  }, [operations])
 
   useEffect(() => {
     if (categories) {
@@ -72,38 +73,48 @@ const DashboardPage = ({ user, operations, getAllOperations }) => {
   return (
     <Grid container>
       <Grid container className={classes.dashboard}>
-        <Grid item md={12} lg={10}>
-          <Paper className={classes.allOperations} elevation={0}>
-            <InfoOperations operations={transactions} classes={classes} />
-          </Paper>
-          <Paper className={classes.graphContainer} elevation={0}>
-            <ChartOperations
-              chartDataX={chartDataX}
-              chartDataY={chartDataY}
-              classes={classes}
-            />
-          </Paper>
-          <Paper className={classes.tableContainer} elevation={0}>
-            <Typography className={classes.tableTitle}>
-              Ultimos movimientos
-            </Typography>
-            <LastOperations
-              lastTransactions={lastTransactions}
-              classes={classes}
-            />
-          </Paper>
-        </Grid>
-        <Hidden mdDown>
-          <Grid item lg={2}>
-            <UserInfo
-              user={user.user}
-              transactions={transactions}
-              classes={classes}
-              roudedChartData={roudedChartData}
-              radialChartData={radialChartData}
-            />
-          </Grid>
-        </Hidden>
+        {lastTransactions &&
+        transactions &&
+        chartDataX &&
+        roudedChartData &&
+        radialChartData ? (
+          <>
+            <Grid item md={12} lg={10}>
+              <Paper className={classes.allOperations} elevation={0}>
+                <InfoOperations operations={transactions} classes={classes} />
+              </Paper>
+              <Paper className={classes.graphContainer} elevation={0}>
+                <ChartOperations
+                  chartDataX={chartDataX}
+                  chartDataY={chartDataY}
+                  classes={classes}
+                />
+              </Paper>
+              <Paper className={classes.tableContainer} elevation={0}>
+                <Typography className={classes.tableTitle}>
+                  Ultimos movimientos
+                </Typography>
+                <LastOperations
+                  lastTransactions={lastTransactions}
+                  classes={classes}
+                />
+              </Paper>
+            </Grid>
+            <Hidden mdDown>
+              <Grid item lg={2}>
+                <UserInfo
+                  user={user.user}
+                  transactions={transactions}
+                  classes={classes}
+                  roudedChartData={roudedChartData}
+                  radialChartData={radialChartData}
+                />
+              </Grid>
+            </Hidden>
+          </>
+        ) : (
+          <CircularProgress color='secondary' />
+        )}
       </Grid>
     </Grid>
   )

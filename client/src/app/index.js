@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 
 import { RoutesWeb } from './routesWeb'
-import { Navigation } from './components/navigation/'
+import Navigation from './components/navigation/'
 import { Styles } from './styles/appStyles'
 import './styles/main.css'
 

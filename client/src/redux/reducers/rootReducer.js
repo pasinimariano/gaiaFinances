@@ -2,6 +2,8 @@ import { initialState } from './state'
 import {
   LOGIN_USER,
   DELETE_USER,
+  UPDATE_USER,
+  LOG_OUT,
   IS_LOGGING,
   GET_OPERATIONS,
   PAGINATION,
@@ -16,12 +18,29 @@ export const rootReducer = (state = initialState, action) => {
         User: action.payload
       }
 
-    case DELETE_USER:
+    case LOG_OUT:
       return {
         ...state,
         User: [],
+        UserOperations: [],
+        OperationFilter: [],
+        Pagination: [],
         isLoggin: false
       }
+
+    case UPDATE_USER: {
+      if (action.payload && action.payload.message === 'Success') {
+        return {
+          ...state,
+          User: { ...User, user: action.payload.formatedData }
+        }
+      } else {
+        return {
+          ...state,
+          Error: action.error
+        }
+      }
+    }
 
     case IS_LOGGING:
       return {

@@ -8,6 +8,8 @@ export const TextFields = ({
   value,
   onChange,
   classes,
+  type,
+  disabled,
   errorHandler
 }) => {
   return (
@@ -20,6 +22,8 @@ export const TextFields = ({
         required
         value={value}
         onChange={onChange}
+        type={type}
+        disabled={disabled}
         className={classes.field}
       />
       <Typography className={classes.error}>{errorHandler}</Typography>

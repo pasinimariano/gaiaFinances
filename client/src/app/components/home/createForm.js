@@ -52,6 +52,7 @@ export const CreateForm = ({
           label='Password'
           value={formValues.password}
           onChange={handleChange}
+          type='password'
           classes={classes}
           errorHandler={backResponse && backResponse.password}
         />

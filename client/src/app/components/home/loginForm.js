@@ -45,6 +45,7 @@ export const LoginForm = ({
           label='Password'
           value={formValues.password}
           onChange={handleChange}
+          type='password'
           classes={classes}
           errorHandler={userState && userState.password}
         />

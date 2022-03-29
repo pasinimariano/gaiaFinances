@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { DELETE_USER, LOGIN_USER, IS_LOGGING } from '.'
+import { DELETE_USER, LOGIN_USER, IS_LOGGING, UPDATE_USER, LOG_OUT } from '.'
 
 export const loginUser = (email, password) => {
   const params = { email, password }
@@ -16,14 +16,29 @@ export const loginUser = (email, password) => {
   }
 }
 
-export const deleteUSer = () => {
+export const logOut = () => {
   return {
-    type: DELETE_USER
+    type: LOG_OUT
   }
 }
 
 export const isLogging = () => {
   return {
     type: IS_LOGGING
+  }
+}
+
+export const updateUser = (data, token) => {
+  return dispatch => {
+    return axios
+      .put(`http://localhost:3001/user/update?token=${token}`, {
+        data
+      })
+      .then(json => {
+        dispatch({ type: UPDATE_USER, payload: json.data })
+      })
+      .catch(error => {
+        dispatch({ type: UPDATE_USER, error: error.data })
+      })
   }
 }
